@@ -4,9 +4,7 @@ import Logo10X from './assets/10x.svg'
 import Wordmark from './assets/wordmark.png'
 import GroundImg from './assets/ground.png'
 import CharactersImg from './assets/cartoon char.png'
-import landing_bg from './assets/landing_bg.png'
-import starBg from './assets/star bg.png'
-import landingWithGround from './assets/landingWithGround_bg.png'
+
 
 export function HeroSection() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -26,7 +24,7 @@ export function HeroSection() {
         return Array.from({ length: 6 }).map(() => ({
             left: Math.random() * 80 + 10,
             top: Math.random() * 40 + 5,
-            duration: 4,
+            duration: 8,
             delay: Math.random() * 10,
             fromRight: Math.random() > 0.5
         }));
@@ -35,12 +33,7 @@ export function HeroSection() {
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
     return (
-        <div className="hero-container" id="home" style={{
-            backgroundImage: `url(${landing_bg})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat'
-        }}>
+        <div className="hero-container" id="home">
             {/* Stars Background */}
             <div className="stars-overlay">
                 {stars.map((star, i) => (

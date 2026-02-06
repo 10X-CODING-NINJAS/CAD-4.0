@@ -18,22 +18,39 @@
   scroll-behavior: smooth;
 }
 
+
 html {
   overflow-x: hidden;
+  overflow-y: scroll;
   width: 100%;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* Hide scrollbar but keep functionality */
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  /* Custom Scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(138, 43, 226, 0.5) transparent;
+  background: url('./assets/landing_bg.png') no-repeat center center fixed;
+  background-size: cover;
 }
 
-/* Hide scrollbar for Webkit browsers */
+/* Custom Scrollbar for Webkit browsers */
 html::-webkit-scrollbar {
-  display: none;
-  width: 0;
-  height: 0;
+  width: 12px;
+}
+
+html::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+html::-webkit-scrollbar-thumb {
+  background: rgba(138, 43, 226, 0.6);
+  border-radius: 6px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background: rgba(138, 43, 226, 0.9);
 }
 
 
@@ -44,7 +61,7 @@ body {
   width: 100%;
   overflow-x: hidden;
   box-sizing: border-box;
-  background: #131313;
+  position: relative;
 }
 
 a {
