@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Timeline</title>
+  <link rel="stylesheet" href="timeline.css">
+</head>
+<body>
+
+  <div class="timeline">
+    <div class="top-gradient"></div>
+    <div class="stars-container"></div> 
+    
+    <h1 class="title">TIMELINE</h1>
+
+    <img src="./assets/cloud1.png" class="cloud left" />
+    <img src="./assets/cloud2.png" class="cloud right" />
+    <img src="./assets/path.png" class="path" />
+    <img src="./assets/ground.png" class="ground" />
+    <img src="./assets/characters.png" class="characters" />
+
+    <div class="node n1">
+      <div class="card"><h3>INDUCTION STARTS</h3><p>22 March 10AM</p></div>
+      <div class="dot"></div>
+    </div>
+
+    <div class="node n2">
+      <div class="card"><h3>HACKATHON STARTS</h3><p>22 March 2PM</p></div>
+      <div class="dot"></div>
+    </div>
+
+    <div class="node n3">
+      <div class="card"><h3>FINAL REVIEW RESULT</h3><p>23 March 10AM</p></div>
+      <div class="dot"></div>
+    </div>
+
+    <div class="node n4">
+      <div class="card"><h3>CLOSING CEREMONY</h3><p>23 March 3PM</p></div>
+      <div class="dot"></div>
+    </div>
+  </div>
+
+  <script>
+    const container = document.querySelector('.stars-container');
+    for (let i = 0; i < 60; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        // Randomized size for a more natural look
+        const size = Math.random() * 2 + 1 + 'px';
+        star.style.width = size;
+        star.style.height = size;
+        star.style.opacity = Math.random() * 0.5 + 0.3;
+        container.appendChild(star);
+    }
+  </script>
+
+</body>
+</html>
+
