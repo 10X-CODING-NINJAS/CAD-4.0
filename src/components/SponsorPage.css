@@ -1,0 +1,642 @@
+/* Main container - fills viewport */
+.sponsor-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #131313;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Content wrapper - maintains 1920x1080 design, scales to fit */
+.sponsor-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+/* Inner content wrapper to maintain aspect ratio */
+.sponsor-page>* {
+    position: absolute;
+}
+
+/* Background image */
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Sponsor cards section */
+.sponsor-cards-section {
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    max-width: 1000px;
+    height: auto;
+    display: flex;
+    gap: 4vw;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: 3vh;
+}
+
+.sponsor-cards-section.content-hidden {
+    opacity: 0;
+}
+
+.sponsor-cards-section.content-visible {
+    opacity: 1;
+    animation: fade-in-content 0.3s ease-in forwards;
+}
+
+@keyframes fade-in-content {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* Sponsor card base - all equal size */
+.sponsor-card {
+    display: flex;
+    flex: 0 0 auto;
+    width: 15vw;
+    min-width: 200px;
+    max-width: 280px;
+}
+
+.sponsor-card-gold,
+.sponsor-card-silver,
+.sponsor-card-bronze {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 0.73;
+}
+
+/* Gold card styles */
+.gold-card {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 9vh;
+    background-size: 100% 100%;
+}
+
+.gold-logo {
+    margin-left: 1.6vw;
+    width: 83%;
+    height: auto;
+    margin-top: 6vh;
+    aspect-ratio: 2.17;
+}
+
+.gold-text-container {
+    margin-left: 5px;
+    height: 84.95px;
+    width: 154px;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7.9px;
+}
+
+.gold-title {
+    margin-left: -0.2vw;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: #643e09;
+    font-size: 2.5vw;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.gold-subtitle {
+    margin-left: -0.2vw;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: #643e09;
+    font-size: 1.6vw;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+/* Silver card styles */
+.silver-card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.silver-card-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    background-size: cover;
+    background-position: 50% 50%;
+}
+
+.silver-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.silver-top-box {
+    position: absolute;
+    top: 8.8%;
+    left: 7.6%;
+    width: 85.3%;
+    height: 38.8%;
+    background: #fdfdfd;
+}
+
+.silver-bottom-box {
+    position: absolute;
+    top: 50.2%;
+    left: 6.2%;
+    width: 90%;
+    height: 35.8%;
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 6px;
+}
+
+.silver-title {
+    position: absolute;
+    top: 60.5%;
+    left: 18.2%;
+    width: 65.9%;
+    height: 18.5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: #6c6c6c;
+    font-size: 2.5vw;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: 1.2;
+}
+
+.silver-battery {
+    position: absolute;
+    top: 94.6%;
+    left: 6.2%;
+    width: 9.7%;
+    height: 2.8%;
+}
+
+/* Bronze card styles */
+.bronze-card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.bronze-card-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.bronze-corner-image {
+    position: absolute;
+    top: 92.7%;
+    left: 89.5%;
+    width: 5.9%;
+    height: 5%;
+    aspect-ratio: 0.9;
+}
+
+.bronze-top-box {
+    position: absolute;
+    top: 8.6%;
+    left: 7.6%;
+    width: 84.6%;
+    height: 38.8%;
+    background: #fde9d6;
+}
+
+.bronze-title {
+    position: absolute;
+    top: 60.3%;
+    left: 17.1%;
+    width: 66.1%;
+    height: 18.5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: #823c18;
+    font-size: 2.5vw;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: 1.2;
+}
+
+.bronze-battery {
+    position: absolute;
+    top: 94.4%;
+    left: 6.2%;
+    width: 9.7%;
+    height: 2.8%;
+}
+
+/* Battery indicator */
+.battery-container {
+    display: flex;
+    gap: 3.4px;
+}
+
+.battery-tip {
+    margin-top: 0.4px;
+    width: 8.2px;
+    height: 13.2px;
+    margin-left: -0.6px;
+    background: #fffdfe;
+    border-radius: 1px;
+    border: 0.6px solid black;
+}
+
+.battery-body {
+    width: 22px;
+    height: 13px;
+    display: flex;
+    background: #272221;
+    border-radius: 1.1px;
+}
+
+.battery-fill {
+    margin-top: 1px;
+    width: 20px;
+    height: 11px;
+    margin-left: 1px;
+    background: #272221;
+    border-radius: 1px;
+    border: 0.5px solid white;
+}
+
+/* Header */
+.sponsor-header {
+    position: absolute;
+    top: 6%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    max-width: 1400px;
+    height: auto;
+}
+
+.sponsor-title-image {
+    position: relative;
+    width: auto;
+    height: clamp(60px, 8vw, 160px);
+    object-fit: contain;
+    z-index: 5;
+}
+
+.pokeball-decoration {
+    position: absolute;
+    top: 49%;
+    left: 50.4%;
+    transform: translate(-50%, -50%);
+    width: clamp(65px, 6.5vw, 130px);
+    height: clamp(65px, 6.5vw, 130px);
+    aspect-ratio: 1;
+    object-fit: contain;
+    z-index: 10;
+    margin-left: 0.8vw;
+    animation: pokeball-rotate-erratic 0.7s steps(12) infinite;
+    filter: drop-shadow(0 0 0 transparent);
+    transition: filter 0.2s ease;
+}
+
+.pokeball-decoration.glowing {
+    filter: drop-shadow(0 0 8px rgba(255, 100, 100, 0.9)) drop-shadow(0 0 15px rgba(255, 50, 50, 0.7)) drop-shadow(0 0 25px rgba(255, 0, 0, 0.5));
+}
+
+.pokeball-decoration.open {
+    animation: none;
+    transform: translate(-50%, -50%) rotate(0deg);
+}
+
+
+
+.pokeball-decoration.closed {
+    animation: none;
+    transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.energy-core-flash {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    background: white;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0.2);
+    animation: coreFlash 300ms ease-out forwards;
+    z-index: 20;
+}
+
+@keyframes coreFlash {
+    0% {
+        transform: translate(-50%, -50%) scale(0.2);
+        opacity: 0;
+    }
+
+    40% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(6);
+        opacity: 0;
+    }
+}
+
+.energy-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0.3);
+    animation: energyRing 600ms ease-out forwards;
+    z-index: 18;
+}
+
+@keyframes energyRing {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(8);
+        opacity: 0;
+    }
+}
+
+
+.energy-particle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 6px;
+    height: 18px;
+    background: linear-gradient(to top, white, rgba(255, 200, 80, 0.6), transparent);
+    border-radius: 4px;
+    transform-origin: center bottom;
+    animation: particleFly 800ms ease-out forwards;
+    pointer-events: none;
+    z-index: 17;
+}
+
+@keyframes particleFly {
+    0% {
+        transform: translate(-50%, -50%) rotate(var(--angle)) translateY(0) scale(0.5);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-180px) scale(0.2);
+        opacity: 0;
+    }
+}
+
+
+@keyframes energy-burst-animation {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.3);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1.5);
+    }
+}
+
+.pokeball-decoration.open::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30%;
+    height: 30%;
+    background: white;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0.2);
+    animation: seamFlash 250ms ease-out forwards;
+    z-index: 12;
+}
+
+@keyframes seamFlash {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.2);
+    }
+
+    40% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(2.5);
+    }
+}
+
+.seam-beam {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0%;
+    height: 8%;
+    background: linear-gradient(to right, transparent, white, transparent);
+    transform: translate(-50%, -50%);
+    animation: seamBeam 350ms ease-out forwards;
+    z-index: 11;
+}
+
+@keyframes seamBeam {
+    0% {
+        width: 0%;
+        opacity: 0;
+    }
+
+    30% {
+        width: 120%;
+        opacity: 1;
+    }
+
+    100% {
+        width: 160%;
+        opacity: 0;
+    }
+}
+
+.light-column {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    width: 20%;
+    height: 0;
+    background: linear-gradient(to top, white, rgba(255, 255, 255, 0.7), transparent);
+    transform: translateX(-50%);
+    animation: lightColumn 450ms ease-out forwards;
+    z-index: 9;
+}
+
+@keyframes lightColumn {
+    0% {
+        height: 0;
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    100% {
+        height: 220%;
+        opacity: 0;
+    }
+}
+
+.energy-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40%;
+    height: 40%;
+    border: 2px solid white;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0.4);
+    animation: ringExpand 500ms ease-out forwards;
+    z-index: 8;
+}
+
+@keyframes ringExpand {
+    to {
+        transform: translate(-50%, -50%) scale(5);
+        opacity: 0;
+    }
+}
+
+
+@keyframes pokeball-rotate-erratic {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    8% {
+        transform: translate(-50%, -50%) rotate(-50deg);
+    }
+
+    16% {
+        transform: translate(-50%, -50%) rotate(-35deg);
+    }
+
+    24% {
+        transform: translate(-50%, -50%) rotate(20deg);
+    }
+
+    32% {
+        transform: translate(-50%, -50%) rotate(65deg);
+    }
+
+    40% {
+        transform: translate(-50%, -50%) rotate(50deg);
+    }
+
+    48% {
+        transform: translate(-50%, -50%) rotate(-10deg);
+    }
+
+    56% {
+        transform: translate(-50%, -50%) rotate(-65deg);
+    }
+
+    64% {
+        transform: translate(-50%, -50%) rotate(-50deg);
+    }
+
+    72% {
+        transform: translate(-50%, -50%) rotate(35deg);
+    }
+
+    80% {
+        transform: translate(-50%, -50%) rotate(10deg);
+    }
+
+    88% {
+        transform: translate(-50%, -50%) rotate(-25deg);
+    }
+
+    96% {
+        transform: translate(-50%, -50%) rotate(15deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+}
+
+/* Overlays */
+.overlay-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 11.4%;
+}
+
+.overlay-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 6.5%;
+}
