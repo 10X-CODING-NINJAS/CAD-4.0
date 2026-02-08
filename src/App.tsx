@@ -1,5 +1,8 @@
 import HeroSection from './herosection'
+import Footer from './footer'
+
 import './App.css'
+
 
 function App() {
   return (
@@ -26,10 +29,8 @@ function App() {
         <p>Highlights from previous years.</p>
       </section>
 
-      <section id="register" className="content-section">
-        <h2>Registration</h2>
-        <p>Sign up for CAD 4.0 now!</p>
-      </section>
+      <Footer />
+
     </div>
   )
 }
