@@ -1,15 +1,12 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer base {
-
-  button,
-  input,
-  select,
-  textarea {
-    @apply appearance-none bg-transparent border-0 outline-none;
-  }
+/* Global reset for form elements */
+button,
+input,
+select,
+textarea {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  outline: none;
 }
 
 /* Global reset for fullscreen layout */
@@ -27,13 +24,8 @@ body {
   font-family: system-ui, -apple-system, sans-serif;
 }
 
-@tailwind components;
-@tailwind utilities;
-
-@layer components {
-  .all-\[unset\] {
-    all: unset;
-  }
+.all-unset {
+  all: unset;
 }
 
 :root {

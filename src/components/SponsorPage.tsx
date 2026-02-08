@@ -69,49 +69,27 @@ const BatteryIndicator = (): JSX.Element => {
 };
 
 export const SponsorPage = (): JSX.Element => {
-    const [isGlowing, setIsGlowing] = useState(false);
-    const [isOpen, setIsOpen] = useState(false);
-    const [showEnergyBurst, setShowEnergyBurst] = useState(false);
-    const [isClosed, setIsClosed] = useState(false);
-    const [showContent, setShowContent] = useState(false);
+    // Animation stages: 'initial' (closed), 'opening' (open), 'bursting' (energy), 'moving' (slide down), 'revealed' (cards visible)
+    type AnimationStage = 'initial' | 'opening' | 'bursting' | 'moving' | 'revealed';
+    const [cardStages, setCardStages] = useState<Record<number, AnimationStage>>({});
 
-    // Toggle between normal and glowing pokeball every 800ms (only when closed and before opening)
-    useEffect(() => {
-        if (isOpen || isClosed) return; // Stop blinking when pokeball opens or after it closes again
+    const handlePokeballClick = (id: number) => {
+        // Prevent multiple clicks if already animating
+        if (cardStages[id] && cardStages[id] !== 'initial') return;
 
-        const interval = setInterval(() => {
-            setIsGlowing((prev) => !prev);
-        }, 800);
+        // Start sequence for this card
+        setCardStages(prev => ({ ...prev, [id]: 'opening' }));
 
-        return () => clearInterval(interval);
-    }, [isOpen, isClosed]);
+        // 0.05s: Energy Burst (almost instant)
+        setTimeout(() => {
+            setCardStages(prev => ({ ...prev, [id]: 'bursting' }));
+        }, 50);
 
-    // Animation sequence
-    useEffect(() => {
-        // Step 1: Open pokeball after 2 seconds
-        const openTimer = setTimeout(() => {
-            setIsOpen(true);
-        }, 2000);
-
-        // Step 2: Show energy burst after 3 seconds (1 second after opening)
-        const burstTimer = setTimeout(() => {
-            setShowEnergyBurst(true);
-        }, 3000);
-
-        // Step 3: Close pokeball and reveal content after 3.5 seconds
-        const closeTimer = setTimeout(() => {
-            setShowEnergyBurst(false);
-            setIsOpen(false);
-            setIsClosed(true);
-            setShowContent(true);
-        }, 3500);
-
-        return () => {
-            clearTimeout(openTimer);
-            clearTimeout(burstTimer);
-            clearTimeout(closeTimer);
-        };
-    }, []);
+        // 0.45s: Reveal Card (very fast sequence)
+        setTimeout(() => {
+            setCardStages(prev => ({ ...prev, [id]: 'revealed' }));
+        }, 450);
+    };
 
     return (
         <main className="sponsor-page">
@@ -121,76 +99,112 @@ export const SponsorPage = (): JSX.Element => {
                 src={sponsorPageBg}
             />
 
-            <section className={`sponsor-cards-section ${showContent ? 'content-visible' : 'content-hidden'}`} aria-label="Sponsor cards">
-                {sponsorData.map((sponsor) => (
-                    <article
-                        key={sponsor.id}
-                        className={`sponsor-card sponsor-card-${sponsor.type}`}
-                    >
-                        {sponsor.type === "gold" ? (
+            <section className="sponsor-cards-section" aria-label="Sponsor cards">
+                {sponsorData.map((sponsor) => {
+                    const stage = cardStages[sponsor.id] || 'initial';
+
+                    return (
+                        <div key={sponsor.id} className="sponsor-card-wrapper">
+                            {/* Platform Glow */}
+                            <div className={`pokeball-platform-glow ${stage}`} />
+
+                            {/* Pokeball Animation Container */}
                             <div
-                                className="gold-card"
-                                style={{ backgroundImage: `url(${sponsor.backgroundImage})` }}
+                                className={`card-pokeball-container ${stage}`}
+                                onClick={() => handlePokeballClick(sponsor.id)}
                             >
                                 <img
-                                    className="gold-logo"
-                                    alt={`${sponsor.title} logo`}
-                                    src={sponsor.logoImage}
+                                    src={stage === 'initial' ? pokeball : openPokeball}
+                                    alt="Pokeball"
+                                    className="card-pokeball"
                                 />
-                                <div className="gold-text-container">
-                                    <h3 className="gold-title">{sponsor.title}</h3>
-                                    {sponsor.subtitle && (
-                                        <p className="gold-subtitle">{sponsor.subtitle}</p>
-                                    )}
-                                </div>
-                            </div>
-                        ) : sponsor.type === "silver" ? (
-                            <div className="silver-card">
-                                <div className="silver-card-background">
-                                    <img
-                                        className="silver-card-image"
-                                        alt=""
-                                        src={sponsor.cardImage}
-                                    />
-                                </div>
-                                <div className="silver-top-box" />
-                                <div className="silver-bottom-box" />
-                                <h3 className="silver-title">
-                                    Samosa
-                                    <br />
-                                    Party
-                                </h3>
-                                <div className="silver-battery">
-                                    <BatteryIndicator />
-                                </div>
-                            </div>
-                        ) : (
-                            <div className="bronze-card">
-                                <img
-                                    className="bronze-card-image"
-                                    alt=""
-                                    src={sponsor.cardImage}
-                                />
-                                {sponsor.cornerImage && (
-                                    <img
-                                        className="bronze-corner-image"
-                                        alt=""
-                                        src={sponsor.cornerImage}
-                                    />
+                                {/* Energy Burst Effects */}
+                                {(stage === 'bursting' || stage === 'moving') && (
+                                    <div className="mini-burst-container">
+                                        <div className="mini-core-flash" />
+                                        <div className="mini-energy-ring" />
+                                        {Array.from({ length: 8 }).map((_, i) => (
+                                            <div
+                                                key={i}
+                                                className="mini-energy-particle"
+                                                style={{ '--angle': `${Math.random() * 360}deg` } as React.CSSProperties}
+                                            />
+                                        ))}
+                                    </div>
                                 )}
-                                <div className="bronze-top-box" />
-                                <h3 className="bronze-title">
-                                    Samosa
-                                    <br />
-                                    Party
-                                </h3>
-                                <div className="bronze-battery">
-                                    <BatteryIndicator />
-                                </div>
                             </div>
-                        )}
-                    </article>
-                ))}
+
+                            {/* Actual Card with Bottom Glow */}
+                            <article
+                                className={`sponsor-card sponsor-card-${sponsor.type} ${stage === 'revealed' ? 'visible' : ''}`}
+                            >
+                                <div className="card-bottom-glow" /> {/* New Glow Effect */}
+                                {sponsor.type === "gold" ? (
+                                    <div
+                                        className="gold-card"
+                                        style={{ backgroundImage: `url(${sponsor.backgroundImage})` }}
+                                    >
+                                        <img
+                                            className="gold-logo"
+                                            alt={`${sponsor.title} logo`}
+                                            src={sponsor.logoImage}
+                                        />
+                                        <div className="gold-text-container">
+                                            <h3 className="gold-title">{sponsor.title}</h3>
+                                            {sponsor.subtitle && (
+                                                <p className="gold-subtitle">{sponsor.subtitle}</p>
+                                            )}
+                                        </div>
+                                    </div>
+                                ) : sponsor.type === "silver" ? (
+                                    <div className="silver-card">
+                                        <div className="silver-card-background">
+                                            <img
+                                                className="silver-card-image"
+                                                alt=""
+                                                src={sponsor.cardImage}
+                                            />
+                                        </div>
+                                        <div className="silver-top-box" />
+                                        <div className="silver-bottom-box" />
+                                        <h3 className="silver-title">
+                                            Samosa
+                                            <br />
+                                            Party
+                                        </h3>
+                                        <div className="silver-battery">
+                                            <BatteryIndicator />
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <div className="bronze-card">
+                                        <img
+                                            className="bronze-card-image"
+                                            alt=""
+                                            src={sponsor.cardImage}
+                                        />
+                                        {sponsor.cornerImage && (
+                                            <img
+                                                className="bronze-corner-image"
+                                                alt=""
+                                                src={sponsor.cornerImage}
+                                            />
+                                        )}
+                                        <div className="bronze-top-box" />
+                                        <h3 className="bronze-title">
+                                            Samosa
+                                            <br />
+                                            Party
+                                        </h3>
+                                        <div className="bronze-battery">
+                                            <BatteryIndicator />
+                                        </div>
+                                    </div>
+                                )}
+                            </article>
+                        </div>
+                    );
+                })}
             </section>
 
             <header className="sponsor-header">
@@ -200,24 +214,10 @@ export const SponsorPage = (): JSX.Element => {
                     src={ourSponsorsTitle}
                 />
                 <img
-                    className={`pokeball-decoration ${isGlowing && !isOpen && !isClosed ? 'glowing' : ''} ${isOpen ? 'open' : ''} ${isClosed ? 'closed' : ''}`}
+                    className="pokeball-decoration-static"
                     alt="Pokeball decoration"
-                    src={isOpen ? openPokeball : pokeball}
+                    src={pokeball}
                 />
-                {showEnergyBurst && (
-                    <>
-                        <div className="seam-beam" />
-                        <div className="light-column" />
-                        <div className="energy-ring" />
-                        {Array.from({ length: 12 }).map((_, i) => (
-                            <div
-                                key={i}
-                                className="energy-particle"
-                                style={{ '--angle': `${Math.random() * 360}deg` } as React.CSSProperties}
-                            />
-                        ))}
-                    </>
-                )}
             </header>
 
             {/* Overlay images - add these if you have them */}
