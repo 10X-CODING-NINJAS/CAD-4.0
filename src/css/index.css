@@ -74,7 +74,6 @@ button {
   outline: none;
 }
 
-/* ===== RESPONSIVE BASE STYLES ===== */
 
 @media (max-width: 768px) {
   html::-webkit-scrollbar {
