@@ -1,9 +1,9 @@
 import { useMemo, useState } from 'react'
 import '../css/herosection.css'
-import Logo10X from '/assets/10x.svg'
-import Wordmark from '/assets/wordmark.png'
-import GroundImg from '/assets/ground.png'
-import CharactersImg from '/assets/cartoon char.png'
+import Logo10X from '/assets/Heropage/10x.svg'
+import Wordmark from '/assets/Heropage/wordmark.png'
+import GroundImg from '/assets/Heropage/ground.png'
+import CharactersImg from '/assets/Heropage/cartoon char.png'
 
 
 export function HeroSection() {

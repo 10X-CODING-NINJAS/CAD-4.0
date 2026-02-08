@@ -1,3 +1,4 @@
+import Footer from './components/footer'
 import HeroSection from './components/herosection'
 import './css/App.css'
 
@@ -5,6 +6,7 @@ function App() {
   return (
     <div className="app-main">
       <HeroSection />
+      <Footer />
 
       <section id="about" className="content-section">
         <h2>About CAD 4.0</h2>
