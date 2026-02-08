@@ -4,6 +4,7 @@ import Logo10X from '/assets/Heropage/10x.svg'
 import Wordmark from '/assets/Heropage/wordmark.png'
 import GroundImg from '/assets/Heropage/ground.png'
 import CharactersImg from '/assets/Heropage/cartoon char.png'
+import Reflection from '/assets/Heropage/reflections.png'
 
 
 export function HeroSection() {
@@ -111,7 +112,7 @@ export function HeroSection() {
                     <div className="characters-container">
                         <div className="character">
                             <img src={CharactersImg} alt="Characters" className="character-main" />
-                            <img src={CharactersImg} alt="Reflections" className="character-reflection" />
+                            <img src={Reflection} alt="Reflections" className="character-reflection" />
                         </div>
                     </div>
                     <div className="ground-wrapper">

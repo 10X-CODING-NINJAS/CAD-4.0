@@ -73,3 +73,25 @@ button {
   cursor: pointer;
   outline: none;
 }
+
+/* ===== RESPONSIVE BASE STYLES ===== */
+
+@media (max-width: 768px) {
+  html::-webkit-scrollbar {
+    width: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    line-height: 1.4;
+  }
+
+  html::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  html::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+  }
+}
