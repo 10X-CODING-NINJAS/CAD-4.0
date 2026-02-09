@@ -1,11 +1,17 @@
 import Footer from './components/footer'
 import HeroSection from './components/herosection'
+import Timeline from './components/timeline'
+//import PastEvents from './components/PastEvents'
 import './css/App.css'
+
 
 function App() {
   return (
     <div className="app-main">
       <HeroSection />
+
+      <Timeline />
+      {/* <PastEvents /> */}
       <Footer />
 
       <section id="about" className="content-section">

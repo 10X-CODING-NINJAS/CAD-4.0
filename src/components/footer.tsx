@@ -1,13 +1,13 @@
 import "../css/footer.css";
 
 // Placeholder assets - replace with actual footer assets later
-const FooterBg = "/assets/Footer/footer bg.png";
+const FooterBg = "/assets/Footer/Footer bg.png";
 const Wordmark = "/assets/Footer/wordmark.png";
 const Doraemon = "/assets/Footer/Doraemon.png";
 const Pikachu = "/assets/Footer/pikachu.png";
-const Linkedin = "/assets/Footer/linkedin_Icon.svg";
+const Linkedin = "/assets/Footer/linkedIn_Icon.svg";
 const Insta = "/assets/Footer/Insta_Icon.svg";
-const Discord = "/assets/Footer/Discord_Icon.svg";
+const Discord = "/assets/Footer/Discord_icon.svg";
 
 function Footer() {
   return (
