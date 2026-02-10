@@ -29,8 +29,8 @@ body {
     height: 100vh;
     margin: 0;
     padding: 0;
-    /* Background handled by body to cover scrollbar area */
-    background: transparent;
+    background: url('/assets/Heropage/landing_bg.png') no-repeat center center;
+    background-size: cover;
     display: flex;
     flex-direction: column;
     overflow: visible;
@@ -132,7 +132,7 @@ body {
     }
 }
 
-.navbar {
+.hero-container .navbar {
     position: absolute;
     top: 15px;
     left: 50%;
@@ -395,7 +395,7 @@ body {
 }
 
 @media (max-width: 1200px) {
-    .navbar {
+    .hero-container .navbar {
         width: 92%;
         height: 70px;
         padding: 0 35px;
@@ -438,7 +438,7 @@ body {
         display: flex;
     }
 
-    .navbar {
+    .hero-container .navbar {
         height: 64px;
         padding: 0 25px;
         border-radius: 32px;
@@ -472,7 +472,7 @@ body {
 }
 
 @media (max-width: 480px) {
-    .navbar {
+    .hero-container .navbar {
         width: 90%;
         height: 60px;
         padding: 0 20px;
@@ -522,7 +522,7 @@ body {
 }
 
 @media (max-width: 375px) {
-    .navbar {
+    .hero-container .navbar {
         width: 88%;
         height: 56px;
         padding: 0 18px;

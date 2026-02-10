@@ -35,7 +35,7 @@ const Timeline = () => {
       <div className="top-gradient"></div>
       <div className="stars-container" ref={starsRef}></div>
 
-      <h1 className="title">TIMELINE</h1>
+      <h1 className="title font-gegola">TIMELINE</h1>
 
       <img src={cloud1} className="cloud cloud-left" alt="" />
       <img src={cloud2} className="cloud cloud-right" alt="" />

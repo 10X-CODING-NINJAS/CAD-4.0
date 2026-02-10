@@ -1,3 +1,5 @@
+@import './tailwind.css';
+
 * {
   box-sizing: inherit;
 }
@@ -8,7 +10,7 @@
   font-weight: 400;
 
   color-scheme: dark;
-  color: white;
+  color: grey;
   background-color: #131313;
 
   font-synthesis: none;
@@ -26,11 +28,10 @@ html {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-color: #131313;
   /* Custom Scrollbar */
   scrollbar-width: thin;
   scrollbar-color: rgba(138, 43, 226, 0.5) transparent;
-  background: url('./assets/landing_bg.png') no-repeat center center fixed;
-  background-size: cover;
 }
 
 /* Custom Scrollbar for Webkit browsers */
@@ -62,6 +63,12 @@ body {
   overflow-x: hidden;
   box-sizing: border-box;
   position: relative;
+  background-color: #131313;
+}
+
+* {
+  margin: 0;
+  padding: 0;
 }
 
 a {

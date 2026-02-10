@@ -15,6 +15,19 @@
   box-sizing: border-box;
 }
 
+.app-main section {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: block;
+}
+
+.content-section {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;
