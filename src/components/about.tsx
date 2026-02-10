@@ -10,7 +10,7 @@ export default function About() {
         <img src="/assets/About/about_bg.png" className="purple-glow" />
 
         {/* TITLE */}
-        <h1 className="title">ABOUT</h1>
+        <h1 className="title font-gegola">ABOUT</h1>
 
         {/* TOWER */}
         <img src="/assets/About/building.png" className="tower" />

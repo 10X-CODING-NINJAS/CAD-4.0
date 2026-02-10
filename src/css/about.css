@@ -46,7 +46,7 @@
   bottom: 75%;
   left: 49%;
   transform: translateX(-50%);
-  font-family: 'League Spartan', sans-serif;
+  font-family: 'Gegola DEMO', sans-serif;
   text-transform: uppercase;
   font-size: 12vw;
   font-weight: 600;
@@ -125,6 +125,7 @@
 
 /* REGISTER BUTTON */
 .register {
+  color: black;
   position: absolute;
   bottom: 35%;
   left: 45%;
