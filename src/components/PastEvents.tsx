@@ -42,10 +42,13 @@ export const PastEvents = (): JSX.Element => {
       />
 
       <img
-        className="absolute inset-0 w-full h-full object-contain"
+        className="absolute bottom-0 left-0 w-full h-[42vh] sm:h-[45vh] md:h-[50vh] object-fill opacity-50 pointer-events-none z-[2]"
         alt="Background overlay"
         src="/assets/PastEvents/bg.png"
       />
+
+      {/* Black gradient from bottom of watch to page end */}
+      <div className="absolute bottom-0 left-0 w-full h-[52%] pointer-events-none z-[8]" style={{ background: 'linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.55) 35%, rgba(0,0,0,0.85) 65%, #000 100%)' }} />
 
       <div className="absolute top-0 left-0 w-full h-[20px] sm:h-[25px] md:h-[31px] pointer-events-none z-0">
         <img className="w-full h-full object-cover" alt="Top overlay" src="/assets/PastEvents/overlay.svg" />
@@ -61,7 +64,7 @@ export const PastEvents = (): JSX.Element => {
             color: '#FFF',
             textShadow: '0 0 30px #91CE00',
             fontFamily: 'Gegola DEMO',
-            fontSize: 'clamp(32px, 5vw, 200px)',
+            fontSize: 'clamp(40px, 11vw, 85px)',
             fontStyle: 'normal',
             fontWeight: 400,
             lineHeight: 'normal'
@@ -71,31 +74,27 @@ export const PastEvents = (): JSX.Element => {
         </h1>
 
         {/* Subtitle */}
-        <div className="absolute top-[80px] xs:top-[95px] sm:top-[12vh] md:top-[13vh] lg:top-[14vh] xl:top-[16vh] left-1/2 -translate-x-1/2 flex items-center justify-center [font-family:'Poppins',Helvetica] font-normal text-[11px] xs:text-[13px] sm:text-[clamp(13px,1.2vw,20px)] tracking-[-0.40px] leading-tight whitespace-nowrap">
+        <div className="absolute top-[80px] xs:top-[95px] sm:top-[110px] md:top-[88px] lg:top-[92px] xl:top-[96px] left-1/2 -translate-x-1/2 flex items-center justify-center [font-family:'Poppins',Helvetica] font-normal text-[15px] xs:text-[16px] sm:text-[clamp(14px,1.2vw,20px)] tracking-[-0.40px] leading-tight whitespace-nowrap">
           <span className="font-light italic text-white tracking-[-0.16px]">
             Turn To{" "}
           </span>
-          <span className="font-light italic text-[#9ef43c] text-[13px] xs:text-[15px] sm:text-[clamp(15px,1.4vw,23px)] tracking-[-0.21px]">
+          <span className="font-light italic text-[#9ef43c] text-[16px] xs:text-[18px] sm:text-[clamp(16px,1.4vw,23px)] tracking-[-0.21px]">
             Access
           </span>
         </div>
 
         {/* Left Character - Red/Dark Alien */}
-        <div className="absolute top-[70px] xs:top-[80px] sm:top-[8vh] md:top-[9vh] lg:top-[10vh] xl:top-[11vh] left-[-30px] xs:left-[-35px] sm:left-[-2.5vw] md:left-[-2.8vw] lg:left-[-3vw] xl:left-[-3.2vw] w-[120px] xs:w-[140px] sm:w-[clamp(140px,20vw,549px)] h-auto z-10">
+        <div className="absolute bottom-0 left-[-20px] xs:left-[-25px] sm:left-[-2vw] md:left-[-2.5vw] lg:left-[-3vw] xl:left-[-3.2vw] w-[42vw] xs:w-[38vw] sm:w-[clamp(155px,20vw,549px)] h-auto z-[25]">
           <img
-            className="absolute top-0 left-[8px] xs:left-[10px] sm:left-[18px] md:left-[25px] lg:left-[30px] xl:left-[34px] w-full h-auto object-cover"
+            className="relative w-full h-auto object-cover pl-[8px] xs:pl-[10px] sm:pl-[18px] md:pl-[25px] lg:pl-[30px] xl:pl-[34px]"
             alt="Left character"
-            src="/assets/PastEvents/60acf5171e361641318f536072564c1e-1.png"
+            src="/assets/PastEvents/fourarms.png"
           />
-          <img
-            className="absolute top-px left-[8px] xs:left-[10px] sm:left-[18px] md:left-[25px] lg:left-[30px] xl:left-[34px] w-full h-auto"
-            alt="Left character overlay"
-            src="/assets/PastEvents/group-10121.png"
-          />
+          
         </div>
 
         {/* Center Watch Display */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[280px] xs:w-[320px] sm:w-[400px] md:w-[500px] lg:w-[600px] xl:w-[665px] h-auto z-20">
+        <div className="absolute top-[44%] -translate-y-1/2 md:top-auto md:translate-y-0 md:bottom-0 left-1/2 -translate-x-1/2 w-[105vw] xs:w-[100vw] sm:w-[80vw] md:w-[540px] lg:w-[620px] xl:w-[665px] h-auto z-20">
           {/* Watch Base - Static */}
           <img 
             className="w-full h-auto drop-shadow-[0_0_15px_rgba(144,205,0,0.3)]"
@@ -122,7 +121,7 @@ export const PastEvents = (): JSX.Element => {
             src="/assets/PastEvents/left.png"
             alt="Previous"
             onClick={!isRotating ? handlePrevious : undefined}
-            className="absolute left-[10%] top-[52%] w-[8%] h-auto cursor-pointer z-30 hover:scale-110 active:scale-95 transition-transform"
+            className="absolute left-[10%] top-[52%] w-[5%] md:w-[8%] h-auto cursor-pointer z-30 hover:scale-110 active:scale-95 transition-transform"
             style={{ pointerEvents: isRotating ? 'none' : 'auto' }}
           />
           
@@ -131,31 +130,29 @@ export const PastEvents = (): JSX.Element => {
             src="/assets/PastEvents/right.png"
             alt="Next"
             onClick={!isRotating ? handleNext : undefined}
-            className="absolute right-[10%] top-[52%] w-[8%] h-auto cursor-pointer z-30 hover:scale-110 active:scale-95 transition-transform"
+            className="absolute right-[10%] top-[52%] w-[5%] md:w-[8%] h-auto cursor-pointer z-30 hover:scale-110 active:scale-95 transition-transform"
             style={{ pointerEvents: isRotating ? 'none' : 'auto' }}
+          />
+
+          {/* Small Alien Icon - anchored to bottom-left of watch */}
+          <img
+            className="absolute bottom-[6%] left-[5%] w-[17%] h-auto object-cover z-30 drop-shadow-lg"
+            alt="Alien character"
+            src="/assets/PastEvents/alien.png"
           />
         </div>
 
         {/* Right Character - Yellow/Orange Alien */}
-        <div className="absolute bottom-[120px] xs:bottom-[140px] sm:bottom-[16vh] md:bottom-[18vh] lg:bottom-[20vh] xl:bottom-[22vh] right-[-30px] xs:right-[-35px] sm:right-[-2.5vw] md:right-[-2.8vw] lg:right-[-3vw] xl:right-[-30vw] w-[120px] xs:w-[140px] sm:w-[clamp(140px,21vw,643px)] h-auto rotate-[-7.42deg] z-10">
+        <div className="absolute bottom-0 right-[-20px] xs:right-[-25px] sm:right-[-2vw] md:right-[-2.5vw] lg:right-[-3vw] xl:right-[-3.5vw] w-[42vw] xs:w-[38vw] sm:w-[clamp(155px,21vw,643px)] h-auto rotate-[-7.42deg] z-[25]">
           <img
-            className="absolute top-[-5px] xs:top-[-6px] sm:top-[-11px] md:top-[-16px] lg:top-[-23px] xl:top-[-26px] left-[-5px] xs:left-[-6px] sm:left-[-9px] md:left-[-13px] lg:left-[-15px] xl:left-[-17px] w-full h-auto rotate-[7.42deg] object-cover"
+            className="relative w-full h-auto rotate-[7.42deg] object-cover"
             alt="Right character"
-            src="/assets/PastEvents/cf8dfd9acc107c283954140a1c6e904e-1.png"
+            src="/assets/PastEvents/wildmutt.png"
           />
-          <img
-            className="absolute top-[-5px] xs:top-[-8px] sm:top-[-11px] md:top-[-16px] lg:top-[-23px] xl:top-[-26px] left-[-5px] xs:left-[-6px] sm:left-[-9px] md:left-[-13px] lg:left-[-15px] xl:left-[-17px] w-full h-auto rotate-[7.42deg]"
-            alt="Right character mask"
-            src="/assets/PastEvents/mask-group.png"
-          />
+         
         </div>
 
-        {/* Small Alien Icon - Left Bottom Side of Watch */}
-        <img
-          className="absolute bottom-[40px] xs:bottom-[50px] sm:bottom-[5vh] md:bottom-[5.5vh] lg:bottom-[6vh] xl:bottom-[7vh] left-[50%] -translate-x-[180px] xs:-translate-x-[200px] sm:-translate-x-[clamp(200px,20vw,280px)] w-[38px] xs:w-[44px] sm:w-[clamp(44px,5vw,102px)] h-auto object-cover z-30 drop-shadow-lg"
-          alt="Alien character"
-          src="/assets/PastEvents/alien.png"
-        />
+
 
         {/* Turn Knobs Controls - Bottom */}
       
