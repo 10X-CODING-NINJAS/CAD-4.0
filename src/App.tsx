@@ -1,11 +1,13 @@
 import Footer from './components/footer'
 import HeroSection from './components/herosection'
 import Timeline from './components/timeline'
+import MobileTimeline from './components/MobileTimeline'
 import { PastEvents } from './components/PastEvents'
 import './css/App.css'
 import { SponsorPage } from './components/SponsorPage'
 import Prize from './components/Prize'
 import About from './components/about'
+import MobileAbout from './components/MobileAbout'
 
 
 function App() {
@@ -15,12 +17,24 @@ function App() {
         <HeroSection />
       </section>
 
+      {/* About — mobile version below md, desktop version md and above */}
       <section id="about" className="content-section">
-        <About />
+        <div className="block md:hidden">
+          <MobileAbout />
+        </div>
+        <div className="hidden md:block">
+          <About />
+        </div>
       </section>
 
+      {/* Timeline — mobile version below md, desktop version md and above */}
       <section id="timeline">
-        <Timeline />
+        <div className="block md:hidden">
+          <MobileTimeline />
+        </div>
+        <div className="hidden md:block">
+          <Timeline />
+        </div>
       </section>
 
       <section id="prize">
