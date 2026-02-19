@@ -284,18 +284,19 @@ body {
 
 .character-reflection {
     position: absolute;
-    top: 69.5%;
-    height: 241.63px;
+    top: 60%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
-    transform: scaleX(1.5);
+    transform: translateX(-50%) scaleX(1.8);
+    transform-origin: bottom center;
 
-    margin-top: -6px;
-    margin-left: 0%;
-    margin-right: 1rem;
+    margin: 0;
 
-    opacity: 1;
-    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
-    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+    opacity: 0.8;
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 70%);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 70%);
     pointer-events: none;
     z-index: 0;
 }
@@ -429,6 +430,17 @@ body {
     }
 }
 
+/* Desktop: hide mobile-only logo, show desktop logo */
+.nav-logo-mobile {
+    display: none;
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
 @media (max-width: 768px) {
     .nav-links {
         display: none;
@@ -438,16 +450,31 @@ body {
         display: flex;
     }
 
+    /* Hide the desktop logo in navbar-left, show mobile logo in navbar-right */
+    .navbar-left .nav-logo {
+        display: none;
+    }
+
+    .nav-logo-mobile {
+        display: block;
+    }
+
+    /* Hide register button in navbar on mobile */
+    .register-btn-pill {
+        display: none;
+    }
+
     .hero-container .navbar {
-        height: 64px;
-        padding: 0 25px;
-        border-radius: 32px;
+        height: 56px;
+        padding: 0 20px;
+        border-radius: 30px;
+        width: 92%;
     }
 
     .hero-wordmark {
-        width: 90%;
-        max-width: 450px;
-        margin-bottom: 15px;
+        width: 80%;
+        max-width: 320px;
+        margin-bottom: 25px;
     }
 
     .hero-subtitle {
@@ -456,40 +483,46 @@ body {
         margin-bottom: 30px;
     }
 
-    .character-main,
-    .character-reflection {
-        height: 160px;
-    }
-
     .hero-center {
-        margin-top: -100px;
+        margin-top: -60px;
     }
 
     .hero-register-btn {
-        padding: 12px 32px;
-        font-size: 14px;
+        padding: 14px 42px;
+        font-size: 16px;
+        font-weight: 800;
+        letter-spacing: 2px;
+        border-radius: 50px;
+        box-shadow: 0 0 30px rgba(255, 255, 255, 0.35);
+    }
+
+    .character-main,
+    .character-reflection {
+        height: 200px;
+    }
+
+    .ground-wrapper {
+        height: 80px;
+        margin-top: -30px;
     }
 }
 
 @media (max-width: 480px) {
     .hero-container .navbar {
         width: 90%;
-        height: 60px;
-        padding: 0 20px;
+        height: 52px;
+        padding: 0 18px;
+        top: 12px;
     }
 
     .nav-logo {
         height: 28px;
     }
 
-    .register-btn-pill {
-        padding: 8px 22px;
-        font-size: 12px;
-    }
-
     .hero-wordmark {
-        width: 95%;
-        max-width: 320px;
+        width: 85%;
+        max-width: 280px;
+        margin-bottom: 20px;
     }
 
     .hero-subtitle {
@@ -497,48 +530,42 @@ body {
         letter-spacing: 4px;
     }
 
-    .character-main,
+    .character-main {
+        height: 230px;
+    }
+
     .character-reflection {
-        height: 240px;
+        height: 230px;
     }
 
     .ground-wrapper {
-        height: 100px;
-    }
-
-    .ground-main {
-        height: 100%;
-        margin-top: 0;
+        height: 60px;
+        margin-top: -25px;
     }
 
     .hero-center {
-        margin-top: -80px;
+        margin-top: -50px;
     }
 
     .hero-register-btn {
-        padding: 10px 28px;
-        font-size: 13px;
+        padding: 12px 38px;
+        font-size: 15px;
     }
 }
 
 @media (max-width: 375px) {
     .hero-container .navbar {
         width: 88%;
-        height: 56px;
-        padding: 0 18px;
+        height: 50px;
+        padding: 0 16px;
     }
 
     .nav-logo {
         height: 26px;
     }
 
-    .register-btn-pill {
-        padding: 7px 20px;
-        font-size: 11px;
-    }
-
     .hero-wordmark {
-        max-width: 280px;
+        max-width: 250px;
     }
 
     .hero-subtitle {
@@ -552,16 +579,16 @@ body {
     }
 
     .ground-wrapper {
-        height: 90px;
+        height: 50px;
     }
 
     .hero-center {
-        margin-top: -60px;
+        margin-top: -40px;
     }
 
     .hero-register-btn {
-        padding: 9px 26px;
-        font-size: 12px;
+        padding: 11px 34px;
+        font-size: 14px;
     }
 
     .mobile-nav a {

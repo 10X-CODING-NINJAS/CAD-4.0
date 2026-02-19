@@ -7,6 +7,7 @@ import CharactersImg from '/assets/Heropage/cartoon char.png'
 import Reflection from '/assets/Heropage/reflections.png'
 
 
+
 export function HeroSection() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -68,6 +69,12 @@ export function HeroSection() {
             {/* Navigation Bar */}
             <nav className="navbar">
                 <div className="navbar-left">
+                    {/* Hamburger Button (mobile only) */}
+                    <button className={`hamburger ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
                     <img src={Logo10X} alt="10X Logo" className="nav-logo" />
                 </div>
 
@@ -82,12 +89,7 @@ export function HeroSection() {
 
                 <div className="navbar-right">
                     <button className="register-btn-pill" onClick={() => window.location.href = '#register'}>REGISTER</button>
-                    {/* Hamburger Button */}
-                    <button className={`hamburger ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
+                    <img src={Logo10X} alt="10X Logo" className="nav-logo nav-logo-mobile" />
                 </div>
 
                 {/* Mobile Nav Overlay */}
