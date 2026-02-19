@@ -663,8 +663,13 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 5vh 0 2vh;
+        padding: 0 0 2vh;
+        /* Further reduced top padding */
+        margin-top: -18vh;
+        /* Move it significantly higher */
         z-index: 10;
+        pointer-events: none;
+        /* Let clicks pass through if overlapping (though margin moves it up) */
     }
 
     .sponsor-title-image {
@@ -680,7 +685,7 @@
         height: clamp(50px, 10vw, 85px);
     }
 
-    /* Cards stack vertically below the header */
+    /* Cards as a 3D circular carousel */
     .sponsor-cards-section {
         position: relative !important;
         top: auto !important;
@@ -688,21 +693,88 @@
         transform: none !important;
         order: 2;
         width: 100%;
+        height: 40vh;
+        /* Reduced height */
         max-width: none;
-        display: grid !important;
-        grid-template-columns: 1fr;
+        display: flex !important;
+        flex-direction: row;
         align-items: center;
-        gap: 5vh;
-        padding: 3vh 0 8vh;
+        justify-content: center;
         margin-top: 0;
         z-index: 5;
+        padding: 0;
+        gap: 0;
+
+        /* 3D Scene setup - tighter perspective for more dramatic depth */
+        perspective: 600px;
+        transform-style: preserve-3d;
+        touch-action: pan-y;
+        /* Allow vertical scroll, we handle horizontal */
+        overflow: visible;
     }
 
-    /* Cards sized nicely for mobile */
+    .sponsor-cards-section::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Cards positioned in 3D circle */
     .sponsor-card-wrapper {
-        width: 65vw;
-        min-width: 240px;
-        max-width: 320px;
+        position: absolute;
+        top: 58%;
+        left: 50%;
+
+        /* Geometry - Smaller cards */
+        width: 40vw;
+        min-width: 160px;
+        max-width: 220px;
+        aspect-ratio: 0.73;
+
+        /* 3D Transform */
+        --radius: 180px;
+        /* Reduced radius for smaller cards */
+        --angle: calc(var(--card-index) * (360deg / var(--total-cards)) + var(--carousel-rotation));
+
+        /*
+           1. Center the item pivot (translate -50%, -50%)
+           2. Rotate around the Y axis (carousel rotation)
+           3. Push item out by radius (translateZ)
+        */
+        transform: translate(-50%, -50%) rotateY(var(--angle)) translateZ(var(--radius));
+        transform-style: preserve-3d;
+        will-change: transform;
+
+        /* Interaction */
+        flex: none;
+        scroll-snap-align: none;
+        cursor: pointer;
+        pointer-events: auto;
+        /* Ensure wrapper captures clicks */
+
+        /* Smooth transition for click-to-rotate, disabled during drag */
+        transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    /* Disable transition when dragging for 1:1 feel */
+    .sponsor-cards-section.is-dragging .sponsor-card-wrapper {
+        transition: none;
+    }
+
+    /* Counter-rotate content to always face camera (billboarding)
+       This prevents 2D images from looking flat when rotated */
+    .sponsor-card-wrapper>* {
+        transform: rotateY(calc(var(--angle) * -1));
+        backface-visibility: hidden;
+        /* Optional: Cleaner rendering */
+    }
+
+    /* Remove the whitish platform glow in mobile view */
+    .pokeball-platform-glow {
+        display: none !important;
+    }
+
+    /* Disable shaking animation on mobile */
+    .card-pokeball-container.initial:hover .card-pokeball {
+        animation: none !important;
     }
 
     /* Scale down pokeball inside cards */
@@ -744,14 +816,17 @@
     }
 
     .sponsor-cards-section {
-        gap: 4vh;
-        padding: 2vh 0 6vh;
+        /* No extra padding/gap needed for 3D view */
+        padding: 0;
+        gap: 0;
     }
 
     .sponsor-card-wrapper {
-        width: 72vw;
-        min-width: 220px;
-        max-width: 290px;
+        width: 50vw;
+        min-width: 140px;
+        max-width: 180px;
+        /* Adjust radius for smaller screens */
+        --radius: 160px;
     }
 
     .sponsor-title-image {

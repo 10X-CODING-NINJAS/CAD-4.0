@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "../css/SponsorPage.css";
 
 // Import images from assets folder
@@ -71,10 +71,61 @@ const BatteryIndicator = (): JSX.Element => {
 export const SponsorPage = (): JSX.Element => {
     // Animation stages: 'initial' (closed), 'opening' (open), 'bursting' (energy), 'moving' (slide down), 'revealed' (cards visible)
     type AnimationStage = 'initial' | 'opening' | 'bursting' | 'moving' | 'revealed';
-    const [cardStages, setCardStages] = useState<Record<number, AnimationStage>>({});
+    const [cardStages, setCardStages] = useState<Record<number, AnimationStage>>({}); // Restored state
 
-    const handlePokeballClick = (id: number) => {
-        // Prevent multiple clicks if already animating
+    // Carousel Logic
+    const [rotation, setRotation] = useState(0);
+    const [isDragging, setIsDragging] = useState(false);
+    const carouselRef = useRef<HTMLDivElement>(null);
+    const dragStartRef = useRef<{ x: number, rotation: number } | null>(null);
+
+    // Handle interaction for rotating the carousel
+    const handlePointerDown = (e: React.PointerEvent) => {
+        setIsDragging(false);
+        dragStartRef.current = {
+            x: e.clientX,
+            rotation: rotation
+        };
+        // Capture pointer to track outside the element
+        (e.target as Element).setPointerCapture(e.pointerId);
+    };
+
+    const handlePointerMove = (e: React.PointerEvent) => {
+        if (!dragStartRef.current) return;
+
+        const deltaX = e.clientX - dragStartRef.current.x;
+        // Increase threshold to prevent accidental drags on tap
+        if (Math.abs(deltaX) > 15) {
+            setIsDragging(true);
+        }
+
+        // sensitivity: 0.5 degrees per pixel
+        setRotation(dragStartRef.current.rotation + deltaX * 0.5);
+    };
+
+    const handlePointerUp = (e: React.PointerEvent) => {
+        dragStartRef.current = null;
+        (e.target as Element).releasePointerCapture(e.pointerId);
+    };
+
+    const handlePokeballClick = (id: number, index: number) => {
+        // Prevent click if we were dragging
+        if (isDragging) return;
+
+        // Calculate target rotation to bring this card to front (0 degrees)
+        const totalCards = sponsorData.length;
+        const anglePerCard = 360 / totalCards;
+        const targetAngle = -index * anglePerCard;
+
+        // Calculate shortest path to target
+        let delta = (targetAngle - rotation) % 360;
+        if (delta > 180) delta -= 360;
+        if (delta < -180) delta += 360;
+
+        // Rotate to bring the clicked card to front
+        setRotation(rotation + delta);
+
+        // Prevent multiple clicks/toggles if already animating sequence
         if (cardStages[id] && cardStages[id] !== 'initial') return;
 
         // Start sequence for this card
@@ -99,19 +150,35 @@ export const SponsorPage = (): JSX.Element => {
                 src={sponsorPageBg}
             />
 
-            <section className="sponsor-cards-section" aria-label="Sponsor cards">
-                {sponsorData.map((sponsor) => {
+            <section
+                className={`sponsor-cards-section ${isDragging ? 'is-dragging' : ''}`}
+                aria-label="Sponsor cards"
+                ref={carouselRef}
+                onPointerDown={handlePointerDown}
+                onPointerMove={handlePointerMove}
+                onPointerUp={handlePointerUp}
+                onPointerLeave={handlePointerUp} // Safety fallback
+                style={{
+                    '--carousel-rotation': `${rotation}deg`,
+                    '--total-cards': sponsorData.length
+                } as React.CSSProperties}
+            >
+                {sponsorData.map((sponsor, index) => {
                     const stage = cardStages[sponsor.id] || 'initial';
 
                     return (
-                        <div key={sponsor.id} className="sponsor-card-wrapper">
+                        <div
+                            key={sponsor.id}
+                            className="sponsor-card-wrapper"
+                            style={{ '--card-index': index } as React.CSSProperties}
+                            onClick={() => handlePokeballClick(sponsor.id, index)}
+                        >
                             {/* Platform Glow */}
                             <div className={`pokeball-platform-glow ${stage}`} />
 
                             {/* Pokeball Animation Container */}
                             <div
                                 className={`card-pokeball-container ${stage}`}
-                                onClick={() => handlePokeballClick(sponsor.id)}
                             >
                                 <img
                                     src={stage === 'initial' ? pokeball : openPokeball}
@@ -213,7 +280,7 @@ export const SponsorPage = (): JSX.Element => {
                     alt="Our Sponsors"
                     src={ourSponsorsTitle}
                 />
-                
+
             </header>
 
             {/* Overlay images - add these if you have them */}
