@@ -1,6 +1,56 @@
+import { useState, useEffect, useRef } from 'react';
+
 export default function Index() {
+  const [count, setCount] = useState(0);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const targetPrize = 150000;
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting && !hasAnimated) {
+          startAnimation();
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, [hasAnimated]);
+
+  const startAnimation = () => {
+    setHasAnimated(true);
+    let startTime: number | null = null;
+    const duration = 2000;
+
+    const animate = (currentTime: number) => {
+      if (!startTime) startTime = currentTime;
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      const easeOutQuad = (t: number) => t * (2 - t);
+      const currentCount = Math.floor(easeOutQuad(progress) * targetPrize);
+
+      setCount(currentCount);
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  };
+
   return (
-    <div className="relative w-full min-h-screen bg-[#131313] overflow-hidden flex flex-col items-center pt-20">
+    <div ref={sectionRef} className="relative w-full min-h-screen bg-[#131313] overflow-hidden flex flex-col items-center pt-20">
       {/* Background starry effect */}
       <div className="absolute inset-0 opacity-24 z-0">
         <img
@@ -23,19 +73,18 @@ export default function Index() {
       <div className="absolute top-0 w-full h-40 bg-gradient-to-b from-[#131313] via-[#131313]/50 to-transparent z-10"></div>
 
       {/* Main content */}
-      <div className="relative z-20 flex flex-col items-center w-full px-4 gap-8">
-        
+      <div className="relative z-20 flex flex-col items-center w-full px-4 gap-8 mt-12 sm:mt-0">
+
         {/* Prize Pool Title */}
-        <h1 
-          className="text-5xl sm:text-6xl md:text-8xl lg:text-[220px] text-white text-center leading-none whitespace-nowrap"
+        <h1
+          className="text-6xl sm:text-6xl md:text-8xl lg:text-[180px] text-white text-center leading-none whitespace-normal md:whitespace-nowrap px-4"
           style={{
             color: '#FFF',
             textShadow: '0 0 30px rgba(215, 169, 54, 0.80)',
             fontFamily: 'Gegola DEMO',
-            fontSize: '120px',
             fontStyle: 'normal',
             fontWeight: 400,
-            lineHeight: 'normal',
+            lineHeight: '1.1',
             letterSpacing: '-0.04em'
           }}
         >
@@ -43,25 +92,25 @@ export default function Index() {
         </h1>
 
         {/* Prize Amount Box */}
-        <div 
+        <div
           className="border-3 md:border-[4px] border-[#D7A936] rounded-2xl px-2 md:px-1 lg:px-1 py-3 md:py-4 lg:py-6"
           style={{
             backgroundColor: 'transparent'
           }}
         >
-          <div 
-            className="text-2xl sm:text-3xl md:text-3xl lg:text-[90px] text-[#D7A936] leading-none"
+          <div
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-[90px] text-[#D7A936] leading-none px-4"
             style={{
               fontFamily: 'Bebas Neue',
               textShadow: '0 0 27.3px rgba(206, 164, 0, 0.74)'
             }}
           >
-            ₹ 1,50,000
+            ₹ {count.toLocaleString()}
           </div>
         </div>
 
         {/* Register Button */}
-        <button 
+        <button
           className="bg-white text-[#2C2C2C] font-kumbh font-bold text-sm md:text-base px-8 md:px-10 py-2 md:py-3 rounded-full hover:bg-gray-100 transition-all"
           style={{
             boxShadow: '0 0 20px 0 #FDFDFD'
@@ -72,20 +121,20 @@ export default function Index() {
       </div>
 
       {/* Character with money on left */}
-      <div className="absolute left-0 bottom-0 w-1/4 md:w-[20%] lg:w-1/4 max-w-[350px] z-25">
+      <div className="absolute left-0 bottom-0 w-[40%] sm:w-1/4 md:w-[20%] lg:w-1/4 max-w-[350px] z-25">
         <img
           src="/assets/prize/Richie.png"
           alt="Character"
-          className="w-full h-auto"
+          className="w-full h-auto opacity-80 sm:opacity-100"
         />
       </div>
 
       {/* Dog character on right */}
-      <div className="absolute right-0 bottom-0 w-1/4 md:w-[20%] lg:w-1/4 max-w-[350px] z-25">
+      <div className="absolute right-0 bottom-0 w-[40%] sm:w-1/4 md:w-[20%] lg:w-1/4 max-w-[350px] z-25">
         <img
           src="/assets/prize/Dollar.png"
           alt="Dog"
-          className="w-full h-auto"
+          className="w-full h-auto opacity-80 sm:opacity-100"
         />
       </div>
 
@@ -102,8 +151,6 @@ export default function Index() {
         }}
       />
 
-
-
       <img
         src="/assets/prize/Money.png"
         alt=""
@@ -114,8 +161,6 @@ export default function Index() {
           animation: 'float 8.2s ease-in-out infinite 2.2s'
         }}
       />
-
-
 
       <img
         src="/assets/prize/Money.png"
