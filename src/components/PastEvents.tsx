@@ -70,7 +70,7 @@ export const PastEvents = (): JSX.Element => {
             lineHeight: 'normal'
           }}
         >
-          Past Events
+          PAST EVENTS
         </h1>
 
         {/* Subtitle */}
