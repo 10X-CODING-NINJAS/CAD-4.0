@@ -1,4 +1,11 @@
 import { useEffect, useRef } from 'react';
+import Timeline from '@mui/lab/Timeline';
+import TimelineItem from '@mui/lab/TimelineItem';
+import TimelineSeparator from '@mui/lab/TimelineSeparator';
+import TimelineConnector from '@mui/lab/TimelineConnector';
+import TimelineContent from '@mui/lab/TimelineContent';
+import TimelineDot from '@mui/lab/TimelineDot';
+import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
 
 const timelineEvents = [
   { label: 'INDUCTION STARTS',   time: '22 March 10AM' },
@@ -30,8 +37,7 @@ export default function MobileTimeline() {
   }, []);
 
   return (
-    <section className="relative w-full min-h-screen bg-[#050510] overflow-hidden flex flex-col items-center pb-10">
-
+    <section className="relative w-full min-h-screen bg-[#050510] overflow-hidden flex flex-col items-center">
       {/* Stars */}
       <div ref={starsRef} className="absolute inset-0 pointer-events-none z-0" />
 
@@ -48,65 +54,95 @@ export default function MobileTimeline() {
 
       {/* Title */}
       <h1
-        className="relative z-10 mt-10 text-white text-center"
+        className="relative z-10 mt-8 sm:mt-10 text-white text-center px-4"
         style={{
           fontFamily: 'Gegola DEMO',
-          fontSize: 'clamp(52px, 18vw, 90px)',
-          textShadow: '0 0 30px #22d3ee, 0 0 60px #0891b2',
+          fontSize: 'clamp(40px, 15vw, 70px)',
+          textShadow: '0 0 25px #22d3ee, 0 0 50px #0891b2',
           letterSpacing: '0.05em',
         }}
       >
         TIMELINE
       </h1>
 
-      {/* Vertical timeline */}
-      <div className="relative z-10 flex flex-col items-center w-full max-w-xs mt-8 px-4">
-
-        {/* Vertical line */}
-        <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[2px]"
-          style={{ background: 'linear-gradient(to bottom, #22d3ee, #0891b2, #22d3ee)' }}
-        />
-
-        {timelineEvents.map((event, idx) => {
-          const isLeft = idx % 2 === 0;
-          return (
-            <div
-              key={idx}
-              className={`relative flex w-full mb-10 ${isLeft ? 'justify-start pr-[52%]' : 'justify-end pl-[52%]'}`}
+      {/* MUI Timeline */}
+      <div className="relative z-10 w-full max-w-md mt-4 mb-auto">
+        <Timeline position="alternate">
+          {timelineEvents.map((event, index) => (
+            <TimelineItem 
+              key={index}
+              sx={{ 
+                minHeight: { xs: '120px', sm: '140px' },
+                mb: 2
+              }}
             >
-              {/* Card */}
-              <div
-                className="bg-white/5 border border-cyan-400/30 rounded-xl p-3 text-center backdrop-blur-sm w-full"
-                style={{ boxShadow: '0 0 12px rgba(34,211,238,0.15)' }}
+              <TimelineOppositeContent 
+                sx={{ 
+                  color: 'rgba(255, 255, 255, 0.7)',
+                  fontSize: { xs: '0.7rem', sm: '0.8rem' },
+                  fontWeight: 400,
+                  py: 2,
+                  px: 1
+                }}
               >
-                <h3 className="text-cyan-300 font-bold text-[12px] leading-tight tracking-wide">
-                  {event.label}
-                </h3>
-                <p className="text-white/70 text-[11px] mt-1">{event.time}</p>
-              </div>
-
-              {/* Dot on the line */}
-              <div
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full border-2 border-cyan-400 bg-[#050510] z-10"
-                style={{ boxShadow: '0 0 8px #22d3ee' }}
-              />
-            </div>
-          );
-        })}
+                {event.time}
+              </TimelineOppositeContent>
+              <TimelineSeparator>
+                <TimelineDot 
+                  sx={{ 
+                    bgcolor: '#22d3ee',
+                    boxShadow: '0 0 10px #22d3ee',
+                    width: { xs: 10, sm: 12 },
+                    height: { xs: 10, sm: 12 }
+                  }} 
+                />
+                {index < timelineEvents.length - 1 && (
+                  <TimelineConnector 
+                    sx={{ 
+                      bgcolor: 'rgba(34, 211, 238, 0.5)',
+                      width: 2,
+                      boxShadow: '0 0 5px rgba(34, 211, 238, 0.3)',
+                      minHeight: '60px'
+                    }} 
+                  />
+                )}
+              </TimelineSeparator>
+              <TimelineContent 
+                sx={{ 
+                  color: 'white',
+                  fontSize: { xs: '0.75rem', sm: '0.85rem' },
+                  fontWeight: 'bold',
+                  py: 2,
+                  px: 1,
+                  bgcolor: 'rgba(0, 0, 0, 0.4)',
+                  border: '1px solid rgba(34, 211, 238, 0.3)',
+                  borderRadius: '12px',
+                  backdropFilter: 'blur(10px)',
+                  boxShadow: '0 0 10px rgba(34, 211, 238, 0.2)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  minHeight: { xs: '50px', sm: '60px' }
+                }}
+              >
+                {event.label}
+              </TimelineContent>
+            </TimelineItem>
+          ))}
+        </Timeline>
       </div>
-
-      {/* Characters */}
-      <img
-        src="/assets/timeline/characters.png"
-        className="relative z-10 w-[90%] max-w-sm object-contain mt-2"
-        alt="Characters"
-      />
 
       {/* Ground */}
       <img
         src="/assets/timeline/ground.png"
-        className="w-full object-cover relative z-10 mt-[-10px]"
+        className="absolute bottom-0 w-full object-cover z-10"
         alt="Ground"
+      />
+
+      {/* Characters */}
+      <img
+        src="/assets/timeline/characters.png"
+        className="absolute bottom-0 z-20 w-[80%] sm:w-[70%] max-w-[300px] object-contain mb-2"
+        alt="Characters"
       />
     </section>
   );

@@ -72,7 +72,7 @@ export default function Index() {
       </div>
 
       {/* Character with money on left */}
-      <div className="absolute left-0 bottom-0 w-1/4 md:w-[20%] lg:w-1/4 max-w-[350px] z-25">
+      <div className="absolute left-0 bottom-0 w-[550px] lg:w-[575px] z-25">
         <img
           src="/assets/prize/Richie.png"
           alt="Character"

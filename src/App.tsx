@@ -6,6 +6,7 @@ import { PastEvents } from './components/PastEvents'
 import './css/App.css'
 import { SponsorPage } from './components/SponsorPage'
 import Prize from './components/Prize'
+import MobilePrize from './components/MobilePrize'
 import About from './components/about'
 import MobileAbout from './components/MobileAbout'
 
@@ -38,7 +39,12 @@ function App() {
       </section>
 
       <section id="prize">
-        <Prize />
+        <div className="block md:hidden">
+          <MobilePrize />
+        </div>
+        <div className="hidden md:block">
+          <Prize />
+        </div>
       </section>
       <section id="sponsors" className="content-section">
         <SponsorPage />
