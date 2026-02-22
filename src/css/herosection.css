@@ -265,7 +265,7 @@ body {
     justify-content: center;
     align-items: flex-end;
     gap: 24px;
-    margin-bottom: -35px;
+    margin-bottom: -170px;
     z-index: 10;
 }
 
@@ -277,7 +277,8 @@ body {
 }
 
 .character-main {
-    height: 241.63px;
+    margin-top: 150px;
+    height: 341.63px;
     object-fit: contain;
     z-index: 0;
 }
@@ -428,6 +429,10 @@ body {
     .character-reflection {
         height: 200px;
     }
+
+    .characters-container {
+        margin-bottom: -100px;
+    }
 }
 
 /* Desktop: hide mobile-only logo, show desktop logo */
@@ -501,6 +506,10 @@ body {
         height: 200px;
     }
 
+    .characters-container {
+        margin-bottom: -100px;
+    }
+
     .ground-wrapper {
         height: 80px;
         margin-top: -30px;
@@ -536,6 +545,10 @@ body {
 
     .character-reflection {
         height: 230px;
+    }
+
+    .characters-container {
+        margin-bottom: -115px;
     }
 
     .ground-wrapper {
@@ -576,6 +589,10 @@ body {
     .character-main,
     .character-reflection {
         height: 200px;
+    }
+
+    .characters-container {
+        margin-bottom: -100px;
     }
 
     .ground-wrapper {

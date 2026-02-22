@@ -95,7 +95,7 @@ export default function Index() {
         <div
           className="border-3 md:border-[4px] border-[#D7A936] rounded-2xl px-2 md:px-1 lg:px-1 py-3 md:py-4 lg:py-6"
           style={{
-            backgroundColor: 'transparent'
+            backgroundColor: 'rgba(38, 27, 2, 0.64)'
           }}
         >
           <div
@@ -121,7 +121,7 @@ export default function Index() {
       </div>
 
       {/* Character with money on left */}
-      <div className="absolute left-0 bottom-0 w-[40%] sm:w-1/4 md:w-[20%] lg:w-1/4 max-w-[350px] z-25">
+      <div className="absolute left-0 bottom-0  max-w-[800px] z-25">
         <img
           src="/assets/prize/Richie.png"
           alt="Character"
@@ -350,16 +350,7 @@ export default function Index() {
         }}
       />
 
-      <img
-        src="/assets/Prize/Money.png"
-        alt=""
-        className="absolute w-52 md:w-64 lg:w-80 z-15"
-        style={{
-          left: '25%',
-          top: '72%',
-          animation: 'float 7.0s ease-in-out infinite 0.5s'
-        }}
-      />
+     
 
       {/* Bottom Right Spread */}
       <img
