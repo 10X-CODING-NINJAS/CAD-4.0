@@ -8,10 +8,10 @@ import TimelineDot from '@mui/lab/TimelineDot';
 import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
 
 const timelineEvents = [
-  { label: 'INDUCTION STARTS',   time: '22 March 10AM' },
-  { label: 'HACKATHON STARTS',   time: '22 March 2PM'  },
+  { label: 'INDUCTION STARTS', time: '22 March 10AM' },
+  { label: 'HACKATHON STARTS', time: '22 March 2PM' },
   { label: 'FINAL REVIEW RESULT', time: '23 March 10AM' },
-  { label: 'CLOSING CEREMONY',   time: '23 March 3PM'  },
+  { label: 'CLOSING CEREMONY', time: '23 March 3PM' },
 ];
 
 export default function MobileTimeline() {
@@ -69,15 +69,15 @@ export default function MobileTimeline() {
       <div className="relative z-10 w-full max-w-md mt-4 mb-auto">
         <Timeline position="alternate">
           {timelineEvents.map((event, index) => (
-            <TimelineItem 
+            <TimelineItem
               key={index}
-              sx={{ 
+              sx={{
                 minHeight: { xs: '120px', sm: '140px' },
                 mb: 2
               }}
             >
-              <TimelineOppositeContent 
-                sx={{ 
+              <TimelineOppositeContent
+                sx={{
                   color: 'rgba(255, 255, 255, 0.7)',
                   fontSize: { xs: '0.7rem', sm: '0.8rem' },
                   fontWeight: 400,
@@ -88,27 +88,27 @@ export default function MobileTimeline() {
                 {event.time}
               </TimelineOppositeContent>
               <TimelineSeparator>
-                <TimelineDot 
-                  sx={{ 
+                <TimelineDot
+                  sx={{
                     bgcolor: '#22d3ee',
                     boxShadow: '0 0 10px #22d3ee',
                     width: { xs: 10, sm: 12 },
                     height: { xs: 10, sm: 12 }
-                  }} 
+                  }}
                 />
                 {index < timelineEvents.length - 1 && (
-                  <TimelineConnector 
-                    sx={{ 
+                  <TimelineConnector
+                    sx={{
                       bgcolor: 'rgba(34, 211, 238, 0.5)',
                       width: 2,
                       boxShadow: '0 0 5px rgba(34, 211, 238, 0.3)',
                       minHeight: '60px'
-                    }} 
+                    }}
                   />
                 )}
               </TimelineSeparator>
-              <TimelineContent 
-                sx={{ 
+              <TimelineContent
+                sx={{
                   color: 'white',
                   fontSize: { xs: '0.75rem', sm: '0.85rem' },
                   fontWeight: 'bold',
@@ -121,7 +121,14 @@ export default function MobileTimeline() {
                   boxShadow: '0 0 10px rgba(34, 211, 238, 0.2)',
                   display: 'flex',
                   alignItems: 'center',
-                  minHeight: { xs: '50px', sm: '60px' }
+                  minHeight: { xs: '50px', sm: '60px' },
+                  transition: 'all 0.3s ease',
+                  cursor: 'pointer',
+                  '&:hover': {
+                    transform: 'scale(1.05)',
+                    border: '1px solid rgba(34, 211, 238, 0.6)',
+                    boxShadow: '0 0 20px rgba(34, 211, 238, 0.6), 0 0 30px rgba(34, 211, 238, 0.4)'
+                  }
                 }}
               >
                 {event.label}
@@ -133,7 +140,7 @@ export default function MobileTimeline() {
 
       {/* Ground */}
       <img
-        src="/assets/timeline/ground.png"
+        src="/assets/timeline/garden.svg"
         className="absolute bottom-0 w-full object-cover z-10"
         alt="Ground"
       />

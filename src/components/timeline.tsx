@@ -4,7 +4,7 @@ import '../css/timeline.css';
 import cloud1 from '/assets/timeline/cloud1.png';
 import cloud2 from '/assets/timeline/cloud2.png';
 import pathImg from '/assets/timeline/path.png';
-import ground from '/assets/timeline/ground.png';
+import ground from '/assets/timeline/garden.svg';
 import characters from '/assets/timeline/characters.png';
 
 const Timeline = () => {
