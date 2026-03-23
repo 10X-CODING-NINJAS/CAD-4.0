@@ -4,10 +4,6 @@ import Logo10X from '/assets/Heropage/10x.svg'
 import Wordmark from '/assets/Heropage/wordmark.png'
 import GroundImg from '/assets/Heropage/ground.png'
 import CharactersImg from '/assets/Heropage/cartoon char.png'
-
-
-
-
 export function HeroSection() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 

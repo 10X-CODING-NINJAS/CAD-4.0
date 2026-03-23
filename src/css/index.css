@@ -1,9 +1,5 @@
 @import './tailwind.css';
 
-* {
-  box-sizing: inherit;
-}
-
 :root {
   font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -67,6 +63,7 @@ body {
 }
 
 * {
+  box-sizing: inherit;
   margin: 0;
   padding: 0;
 }

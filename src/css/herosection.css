@@ -6,21 +6,6 @@
     --accent-orange: #ff6b00;
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-html,
-body {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-    margin: 0;
-    padding: 0;
-}
-
 /* Body styles handled in index.css */
 
 .hero-container {
@@ -52,7 +37,7 @@ body {
     background: white;
     border-radius: 50%;
     box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
-    animation: twinkle var(--duration, 3s) infinite ease-in-out;
+    animation: twinkle-hero var(--duration, 3s) infinite ease-in-out;
 }
 
 .twinkle-star.glow-effect {
@@ -118,7 +103,7 @@ body {
     animation-name: shooting-animation-right;
 }
 
-@keyframes twinkle {
+@keyframes twinkle-hero {
 
     0%,
     100% {
@@ -133,7 +118,7 @@ body {
 }
 
 .hero-container .navbar {
-    position: absolute;
+    position: fixed;
     top: 15px;
     left: 50%;
     transform: translateX(-50%);
