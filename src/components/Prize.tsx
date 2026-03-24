@@ -73,11 +73,11 @@ export default function Index() {
       <div className="absolute top-0 w-full h-40 bg-gradient-to-b from-[#131313] via-[#131313]/50 to-transparent z-10"></div>
 
       {/* Main content */}
-      <div className="relative z-20 flex flex-col items-center w-full px-4 gap-8 mt-12 sm:mt-0">
+      <div className="relative z-20 flex flex-col items-center justify-center w-full px-4 gap-8 mt-12 sm:mt-0">
 
         {/* Prize Pool Title */}
         <h1
-          className="text-6xl sm:text-6xl md:text-8xl lg:text-[180px] text-white text-center leading-none whitespace-normal md:whitespace-nowrap px-4"
+          className="text-6xl sm:text-6xl md:text-8xl lg:text-[180px] text-white text-center leading-none whitespace-normal md:whitespace-nowrap px-4 mb-4 md:mb-6"
           style={{
             color: '#FFF',
             textShadow: '0 0 30px rgba(215, 169, 54, 0.80)',

@@ -52,9 +52,9 @@ function Footer() {
             <img src={Insta} alt="Instagram" />
           </a>
 
-          <a href="#" aria-disabled="true" onClick={(e) => e.preventDefault()}>
+          {/* <a href="#" aria-disabled="true" onClick={(e) => e.preventDefault()}>
             <img src={Discord} alt="Discord" />
-          </a>
+          </a> */}
         </div>
       </div>
     </footer>

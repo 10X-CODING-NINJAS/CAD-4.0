@@ -50,7 +50,7 @@ const Timeline = () => {
       <div className="node n1">
         <div className="card">
           <h3>INDUCTION STARTS</h3>
-          <p>22 March 10AM</p>
+          <p>6 April 10AM</p>
         </div>
         <div className="dot"></div>
       </div>
@@ -58,7 +58,7 @@ const Timeline = () => {
       <div className="node n2">
         <div className="card">
           <h3>HACKATHON STARTS</h3>
-          <p>22 March 2PM</p>
+          <p>6 April 11:30AM</p>
         </div>
         <div className="dot"></div>
       </div>
@@ -66,7 +66,7 @@ const Timeline = () => {
       <div className="node n3">
         <div className="card">
           <h3>FINAL REVIEW RESULT</h3>
-          <p>23 March 10AM</p>
+          <p>7 April 2PM</p>
         </div>
         <div className="dot"></div>
       </div>
@@ -74,7 +74,7 @@ const Timeline = () => {
       <div className="node n4">
         <div className="card">
           <h3>CLOSING CEREMONY</h3>
-          <p>23 March 3PM</p>
+          <p>7 April 3PM</p>
         </div>
         <div className="dot"></div>
       </div>

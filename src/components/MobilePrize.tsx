@@ -28,7 +28,7 @@ export default function MobilePrize() {
         
         {/* Prize Pool Title */}
         <h1 
-          className="text-[42px] text-white text-center leading-tight"
+          className="text-[42px] text-white text-center leading-tight mb-4"
           style={{
             color: '#FFF',
             textShadow: '0 0 25px rgba(215, 169, 54, 0.80)',

@@ -235,9 +235,9 @@ export const SponsorPage = (): JSX.Element => {
                                         <div className="silver-top-box" />
                                         <div className="silver-bottom-box" />
                                         <h3 className="silver-title">
-                                            Samosa
+                                            Sponser 2
                                             <br />
-                                            Party
+                                            
                                         </h3>
                                         <div className="silver-battery">
                                             <BatteryIndicator />
@@ -259,9 +259,8 @@ export const SponsorPage = (): JSX.Element => {
                                         )}
                                         <div className="bronze-top-box" />
                                         <h3 className="bronze-title">
-                                            Samosa
-                                            <br />
-                                            Party
+                                            
+                                            Sponser 3
                                         </h3>
                                         <div className="bronze-battery">
                                             <BatteryIndicator />

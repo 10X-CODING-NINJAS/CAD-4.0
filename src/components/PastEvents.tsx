@@ -57,30 +57,31 @@ export const PastEvents = (): JSX.Element => {
       {/* Main Content Container */}
       <div className="relative z-10 flex flex-col items-center justify-center w-full h-full px-1 sm:px-2 overflow-hidden">
         
-        {/* Title */}
-        <h1 
-          className="absolute top-[5px] xs:top-[8px] sm:top-[1.5vh] md:top-[1.8vh] lg:top-[2vh] xl:top-[2.5vh] left-1/2 -translate-x-1/2 whitespace-nowrap text-center max-w-[95vw]"
-          style={{
-            color: '#FFF',
-            textShadow: '0 0 30px #91CE00',
-            fontFamily: 'Gegola DEMO',
-            fontSize: 'clamp(40px, 11vw, 85px)',
-            fontStyle: 'normal',
-            fontWeight: 400,
-            lineHeight: 'normal'
-          }}
-        >
-          PAST EVENTS
-        </h1>
+        {/* Above-watch heading stack */}
+        <div className="absolute top-[6px] xs:top-[10px] sm:top-[14px] md:top-[18px] left-1/2 -translate-x-1/2 z-[26] flex flex-col items-center justify-center gap-1 xs:gap-2 sm:gap-3">
+          <h1
+            className="whitespace-nowrap text-center max-w-[95vw] leading-none"
+            style={{
+              color: '#FFF',
+              textShadow: '0 0 30px #91CE00',
+              fontFamily: 'Gegola DEMO',
+              fontSize: 'clamp(40px, 11vw, 85px)',
+              fontStyle: 'normal',
+              fontWeight: 400,
+              lineHeight: 'normal'
+            }}
+          >
+            PAST EVENTS
+          </h1>
 
-        {/* Subtitle */}
-        <div className="absolute top-[80px] xs:top-[95px] sm:top-[110px] md:top-[88px] lg:top-[92px] xl:top-[96px] left-1/2 -translate-x-1/2 flex items-center justify-center [font-family:'Poppins',Helvetica] font-normal text-[15px] xs:text-[16px] sm:text-[clamp(14px,1.2vw,20px)] tracking-[-0.40px] leading-tight whitespace-nowrap">
-          <span className="font-light italic text-white tracking-[-0.16px]">
-            Turn To{" "}
-          </span>
-          <span className="font-light italic text-[#9ef43c] text-[16px] xs:text-[18px] sm:text-[clamp(16px,1.4vw,23px)] tracking-[-0.21px]">
-            Access
-          </span>
+          <div className="flex items-center justify-center [font-family:'Poppins',Helvetica] font-normal text-[15px] xs:text-[16px] sm:text-[clamp(14px,1.2vw,20px)] tracking-[-0.40px] leading-tight whitespace-nowrap">
+            <span className="font-light italic text-white tracking-[-0.16px]">
+              Turn To{" "}
+            </span>
+            <span className="font-light italic text-[#9ef43c] text-[16px] xs:text-[18px] sm:text-[clamp(16px,1.4vw,23px)] tracking-[-0.21px]">
+              Access
+            </span>
+          </div>
         </div>
 
         {/* Left Character - Red/Dark Alien */}
@@ -94,7 +95,7 @@ export const PastEvents = (): JSX.Element => {
         </div>
 
         {/* Center Watch Display */}
-        <div className="absolute top-[44%] -translate-y-1/2 md:top-auto md:translate-y-0 md:bottom-0 left-1/2 -translate-x-1/2 w-[105vw] xs:w-[100vw] sm:w-[80vw] md:w-[540px] lg:w-[620px] xl:w-[665px] h-auto z-20">
+        <div className="absolute top-[48%] -translate-y-1/2 md:top-auto md:translate-y-0 md:bottom-0 left-1/2 -translate-x-1/2 w-[105vw] xs:w-[100vw] sm:w-[80vw] md:w-[540px] lg:w-[620px] xl:w-[665px] h-auto z-20">
           {/* Watch Base - Static */}
           <img 
             className="w-full h-auto drop-shadow-[0_0_15px_rgba(144,205,0,0.3)]"
