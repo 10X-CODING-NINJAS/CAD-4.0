@@ -1,8 +1,7 @@
 import { useMemo, useState } from 'react'
 import '../css/herosection.css'
-import Logo10X from '/assets/Heropage/10x.svg'
+import Logo10X from '/assets/Heropage/Logo.png'
 import Wordmark from '/assets/Heropage/wordmark.png'
-import GroundImg from '/assets/Heropage/ground.png'
 import CharactersImg from '/assets/Heropage/cartoon char.png'
 export function HeroSection() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -112,7 +111,6 @@ export function HeroSection() {
                             <img src={CharactersImg} alt="Characters" className="character-main" />                        </div>
                     </div>
                     <div className="ground-wrapper">
-                        <img src={GroundImg} alt="Ground" className="ground-main" />
                     </div>
                 </div>
             </div>
