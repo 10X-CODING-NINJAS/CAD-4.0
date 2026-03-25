@@ -7,7 +7,6 @@ const Doraemon = "/assets/Footer/Doraemon.png";
 const Pikachu = "/assets/Footer/pikachu.png";
 const Linkedin = "/assets/Footer/linkedIn_Icon.svg";
 const Insta = "/assets/Footer/Insta_Icon.svg";
-const Discord = "/assets/Footer/Discord_icon.svg";
 
 function Footer() {
   return (
@@ -31,7 +30,11 @@ function Footer() {
       <div className="footer-center">
         <img src={Wordmark} className="footer-wordmark" alt="CAD 4.0" />
 
-        <a href="#register">
+        <a
+          href="https://unstop.com/o/nvCL7I4?utm_medium=Share&utm_source=codin10x44066&utm_campaign=Online_coding_challenge"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <button className="footer-register-btn">REGISTER</button>
         </a>
 

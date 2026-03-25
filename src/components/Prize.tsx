@@ -1,56 +1,6 @@
-import { useState, useEffect, useRef } from 'react';
-
 export default function Index() {
-  const [count, setCount] = useState(0);
-  const [hasAnimated, setHasAnimated] = useState(false);
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const targetPrize = 150000;
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const [entry] = entries;
-        if (entry.isIntersecting && !hasAnimated) {
-          startAnimation();
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, [hasAnimated]);
-
-  const startAnimation = () => {
-    setHasAnimated(true);
-    let startTime: number | null = null;
-    const duration = 2000;
-
-    const animate = (currentTime: number) => {
-      if (!startTime) startTime = currentTime;
-      const progress = Math.min((currentTime - startTime) / duration, 1);
-      const easeOutQuad = (t: number) => t * (2 - t);
-      const currentCount = Math.floor(easeOutQuad(progress) * targetPrize);
-
-      setCount(currentCount);
-
-      if (progress < 1) {
-        requestAnimationFrame(animate);
-      }
-    };
-
-    requestAnimationFrame(animate);
-  };
-
   return (
-    <div ref={sectionRef} className="relative w-full min-h-screen bg-[#131313] overflow-hidden flex flex-col items-center pt-20">
+    <div className="relative w-full min-h-screen bg-[#131313] overflow-hidden flex flex-col items-center pt-20">
       {/* Background starry effect */}
       <div className="absolute inset-0 opacity-24 z-0">
         <img
@@ -91,26 +41,28 @@ export default function Index() {
           PRIZE POOL
         </h1>
 
-        {/* Prize Amount Box */}
+        {/* Prize Reveal Box */}
         <div
-          className="border-3 md:border-[4px] border-[#D7A936] rounded-2xl px-2 md:px-1 lg:px-1 py-3 md:py-4 lg:py-6"
+          className="border-3 md:border-[4px] border-[#D7A936] rounded-2xl px-6 md:px-8 lg:px-10 py-4 md:py-5 lg:py-6"
           style={{
             backgroundColor: 'rgba(38, 27, 2, 0.64)'
           }}
         >
           <div
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-[90px] text-[#D7A936] leading-none px-4"
+            className="text-center text-[#B8860B]"
             style={{
               fontFamily: 'Bebas Neue',
-              textShadow: '0 0 27.3px rgba(206, 164, 0, 0.74)'
+              letterSpacing: '0.06em',
+              textShadow: '0 0 14px rgba(133, 92, 11, 0.4)'
             }}
           >
-            ₹ {count.toLocaleString()}
+            <span className="text-base sm:text-lg md:text-2xl lg:text-4xl">TO BE REVEALED SOON</span>
           </div>
         </div>
 
         {/* Register Button */}
         <button
+          onClick={() => window.open('https://unstop.com/o/nvCL7I4?utm_medium=Share&utm_source=codin10x44066&utm_campaign=Online_coding_challenge', '_blank', 'noopener,noreferrer')}
           className="bg-white text-[#2C2C2C] font-kumbh font-bold text-sm md:text-base px-8 md:px-10 py-2 md:py-3 rounded-full hover:bg-gray-100 transition-all"
           style={{
             boxShadow: '0 0 20px 0 #FDFDFD'

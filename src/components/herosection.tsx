@@ -78,12 +78,13 @@ export function HeroSection() {
                     <a href="#home">Home</a>
                     <a href="#about">About</a>
                     <a href="#timeline">Timeline</a>
+                    <a href="#prize">Prize Pool</a>
                     <a href="#sponsors">Our Sponsors</a>
                     <a href="#events">Past Events</a>
                 </div>
 
                 <div className="navbar-right">
-                    <button className="register-btn-pill" onClick={() => window.location.href = '#register'}>REGISTER</button>
+                    <button className="register-btn-pill" onClick={() => window.open('https://unstop.com/o/nvCL7I4?utm_medium=Share&utm_source=codin10x44066&utm_campaign=Online_coding_challenge', '_blank', 'noopener,noreferrer')}>REGISTER</button>
                     <img src={Logo10X} alt="10X Logo" className="nav-logo nav-logo-mobile" />
                 </div>
 
@@ -92,6 +93,7 @@ export function HeroSection() {
                     <a href="#home" onClick={toggleMenu}>Home</a>
                     <a href="#about" onClick={toggleMenu}>About</a>
                     <a href="#timeline" onClick={toggleMenu}>Timeline</a>
+                    <a href="#prize" onClick={toggleMenu}>Prize Pool</a>
                     <a href="#sponsors" onClick={toggleMenu}>Our Sponsors</a>
                     <a href="#events" onClick={toggleMenu}>Past Events</a>
                 </div>
@@ -101,7 +103,7 @@ export function HeroSection() {
             <div className="hero-main">
                 <div className="hero-center">
                     <img src={Wordmark} alt="CAD 4.0" className="hero-wordmark" />
-                    <button className="hero-register-btn" onClick={() => window.location.href = '#register'}>REGISTER</button>
+                    <button className="hero-register-btn" onClick={() => window.open('https://unstop.com/o/nvCL7I4?utm_medium=Share&utm_source=codin10x44066&utm_campaign=Online_coding_challenge', '_blank', 'noopener,noreferrer')}>REGISTER</button>
                 </div>
 
                 {/* Characters and Ground */}

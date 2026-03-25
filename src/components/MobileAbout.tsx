@@ -97,6 +97,7 @@ export default function MobileAbout() {
       {/* ── REGISTER BUTTON ── */}
       <div className="absolute left-1/2 -translate-x-1/2 z-[6]" style={{ bottom: '27%' }}>
         <button
+          onClick={() => window.open('https://unstop.com/o/nvCL7I4?utm_medium=Share&utm_source=codin10x44066&utm_campaign=Online_coding_challenge', '_blank', 'noopener,noreferrer')}
           className="px-9 py-[7px] rounded-full font-bold tracking-widest uppercase"
           style={{
             background: '#e8e8e8',

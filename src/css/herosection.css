@@ -134,6 +134,7 @@
     align-items: center;
     padding: 0 40px;
     z-index: 100;
+    gap: 16px;
 }
 
 .nav-logo {
@@ -142,19 +143,23 @@
 
 .nav-links {
     display: flex;
-    gap: 60px;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    gap: clamp(16px, 2.4vw, 42px);
+    position: static;
+    transform: none;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    padding: 0 16px;
 }
 
 .nav-links a {
     text-decoration: none;
     color: rgba(255, 255, 255, 0.8);
-    font-size: 15px;
+    font-size: clamp(12px, 1.05vw, 15px);
     font-weight: 500;
     transition: all 0.3s;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.25px;
+    white-space: nowrap;
 }
 
 .nav-links a:hover {

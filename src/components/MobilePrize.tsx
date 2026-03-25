@@ -42,27 +42,29 @@ export default function MobilePrize() {
           PRIZE POOL
         </h1>
 
-        {/* Prize Amount Box with badge */}
+        {/* Prize Reveal Box */}
         <div className="relative">
           
           <div 
-            className="border-[3px] border-[#D7A936] rounded-lg px-8 py-2 bg-black/50"
+            className="border-[3px] border-[#D7A936] rounded-lg px-6 py-3 bg-black/50"
           >
             <div 
-              className="text-[38px] text-[#D7A936] leading-none"
+              className="text-center text-[#B8860B]"
               style={{
                 fontFamily: 'Bebas Neue',
-                textShadow: '0 0 27.3px rgba(206, 164, 0, 0.74)',
-                letterSpacing: '0.02em'
+                textShadow: '0 0 10px rgba(133, 92, 11, 0.4)',
+                letterSpacing: '0.02em',
+                lineHeight: 1.1
               }}
             >
-              ₹1,50,000
+              <span className="text-[17px]">TO BE REVEALED SOON</span>
             </div>
           </div>
         </div>
 
         {/* Register Button */}
         <button 
+          onClick={() => window.open('https://unstop.com/o/nvCL7I4?utm_medium=Share&utm_source=codin10x44066&utm_campaign=Online_coding_challenge', '_blank', 'noopener,noreferrer')}
           className="bg-white text-[#2C2C2C] font-kumbh font-bold text-sm px-10 py-2.5 rounded-full hover:bg-gray-100 transition-all uppercase tracking-wider mt-1"
           style={{
             boxShadow: '0 0 20px 0 #FDFDFD'

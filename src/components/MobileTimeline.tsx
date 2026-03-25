@@ -8,10 +8,10 @@ import TimelineDot from '@mui/lab/TimelineDot';
 import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
 
 const timelineEvents = [
-  { label: 'INDUCTION STARTS', time: '22 March 10AM' },
-  { label: 'HACKATHON STARTS', time: '22 March 2PM' },
-  { label: 'FINAL REVIEW RESULT', time: '23 March 10AM' },
-  { label: 'CLOSING CEREMONY', time: '23 March 3PM' },
+  { label: 'INDUCTION STARTS', time: '6 April 10AM' },
+  { label: 'HACKATHON STARTS', time: '6 April 11:30AM' },
+  { label: 'FINAL REVIEW RESULT', time: '7 April 2PM' },
+  { label: 'CLOSING CEREMONY', time: '7 April 3PM' },
 ];
 
 export default function MobileTimeline() {

@@ -27,7 +27,7 @@ html {
   background-color: #131313;
   /* Custom Scrollbar */
   scrollbar-width: thin;
-  scrollbar-color: rgba(138, 43, 226, 0.5) transparent;
+  scrollbar-color: rgb(255, 255, 255) transparent;
 }
 
 /* Custom Scrollbar for Webkit browsers */
@@ -40,14 +40,14 @@ html::-webkit-scrollbar-track {
 }
 
 html::-webkit-scrollbar-thumb {
-  background: rgba(138, 43, 226, 0.6);
+  background: white;
   border-radius: 6px;
   border: 2px solid transparent;
   background-clip: content-box;
 }
 
 html::-webkit-scrollbar-thumb:hover {
-  background: rgba(138, 43, 226, 0.9);
+  background: white;
 }
 
 

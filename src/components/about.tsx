@@ -35,7 +35,12 @@ export default function About() {
         </div>
 
         {/* REGISTER BUTTON */}
-        <button className="register">REGISTER</button>
+        <button
+          className="register"
+          onClick={() => window.open('https://unstop.com/o/nvCL7I4?utm_medium=Share&utm_source=codin10x44066&utm_campaign=Online_coding_challenge', '_blank', 'noopener,noreferrer')}
+        >
+          REGISTER
+        </button>
 
         {/* FOREGROUND */}
         <img src="/assets/About/garden.png" className="garden" />
