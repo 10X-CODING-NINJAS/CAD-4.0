@@ -2,13 +2,13 @@ import { useState, useRef } from "react";
 import "../css/SponsorPage.css";
 
 // Import images from assets folder
-import bronzeSponsor from "/assets/Sponsers/bronze sponsor.png";
-import goldSponsor from "/assets/Sponsers/gold sponsor.png";
-import silverSponsor from "/assets/Sponsers/silver sponsor.png";
-import pokeball from "/assets/Sponsers/Pokeball.png";
-import openPokeball from "/assets/Sponsers/open pokeball.png";
-import sponsorPageBg from "/assets/Sponsers/sponsor page.png";
-import ourSponsorsTitle from "/assets/Sponsers/OUR SPONSORS.png";
+import bronzeSponsor from "/assets/Sponsors/bronze sponsor.png";
+import goldSponsor from "/assets/Sponsors/gold sponsor.png";
+import silverSponsor from "/assets/Sponsors/silver sponsor.png";
+import pokeball from "/assets/Sponsors/Pokeball.png";
+import openPokeball from "/assets/Sponsors/open pokeball.png";
+import sponsorPageBg from "/assets/Sponsors/sponsor page.png";
+import ourSponsorsTitle from "/assets/Sponsors/OUR SPONSORS.png";
 
 interface SponsorCard {
     id: number;
@@ -235,7 +235,7 @@ export const SponsorPage = (): JSX.Element => {
                                         <div className="silver-top-box" />
                                         <div className="silver-bottom-box" />
                                         <h3 className="silver-title">
-                                            Sponser 2
+                                            Sponsor 2
                                             <br />
                                             
                                         </h3>
@@ -260,7 +260,7 @@ export const SponsorPage = (): JSX.Element => {
                                         <div className="bronze-top-box" />
                                         <h3 className="bronze-title">
                                             
-                                            Sponser 3
+                                            Sponsor 3
                                         </h3>
                                         <div className="bronze-battery">
                                             <BatteryIndicator />
