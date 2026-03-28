@@ -50,7 +50,7 @@ const Timeline = () => {
       <div className="node n1">
         <div className="card">
           <h3>Registration opens</h3>
-          <p>23 March</p>
+          <p>25 March</p>
         </div>
         <div className="dot"></div>
       </div>
