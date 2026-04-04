@@ -2,9 +2,13 @@ import { useState, useRef } from "react";
 import "../css/SponsorPage.css";
 
 // Import images from assets folder
-import bronzeSponsor from "/assets/Sponsors/bronze sponsor.png";
-import goldSponsor from "/assets/Sponsors/gold sponsor.png";
-import silverSponsor from "/assets/Sponsors/silver sponsor.png";
+import Beeceptor from "/assets/Sponsors/Beeceptor.png";
+import BYS from "/assets/Sponsors/BYS.png";
+import ECEI from "/assets/Sponsors/ECEI Gate.png";
+import Icebrkr from "/assets/Sponsors/Icebrkr.png";
+import InterviewBuddy from "/assets/Sponsors/InterviewBuddy.png";
+import T2L from "/assets/Sponsors/T2L.png";
+import UnTechEd from "/assets/Sponsors/UnTechEd.png";
 import pokeball from "/assets/Sponsors/Pokeball.png";
 import openPokeball from "/assets/Sponsors/open pokeball.png";
 import sponsorPageBg from "/assets/Sponsors/sponsor page.png";
@@ -12,66 +16,54 @@ import ourSponsorsTitle from "/assets/Sponsors/OUR SPONSORS.png";
 
 interface SponsorCard {
     id: number;
-    type: "gold" | "silver" | "bronze";
-    backgroundImage?: string;
-    logoImage?: string;
     title: string;
-    subtitle?: string;
-    cardImage?: string;
-    topBoxBg: string;
-    textColor: string;
-    bottomBoxBg: string;
-    cornerImage?: string;
+    image: string;
 }
 
 const sponsorData: SponsorCard[] = [
     {
         id: 1,
-        type: "gold",
-        backgroundImage: goldSponsor,
-        title: "Sponsor\n1",
-        topBoxBg: "#fdfdfd",
-        textColor: "#643e09",
-        bottomBoxBg: "#ffffff2e",
-        cornerImage: undefined,
+        title: "Sponsor 1",
+        image: Beeceptor,
     },
     {
         id: 2,
-        type: "silver",
-        cardImage: silverSponsor,
-        title: "Sponsor\n2",
-        topBoxBg: "#fdfdfd",
-        textColor: "#6c6c6c",
-        bottomBoxBg: "#ffffff2e",
-        cornerImage: undefined,
+        title: "BYS",
+        image: BYS,
     },
     {
         id: 3,
-        type: "bronze",
-        cardImage: bronzeSponsor,
-        title: "Sponsor\n3",
-        topBoxBg: "#fde9d6",
-        textColor: "#823c18",
-        bottomBoxBg: "#ffffff2e",
-        cornerImage: undefined,
+        title: "ECEI Gate",
+        image: ECEI,
+    },
+    {
+        id: 4,
+        title: "Icebrkr",
+        image: Icebrkr,
+    },
+    {
+        id: 5,
+        title: "InterviewBuddy",
+        image: InterviewBuddy,
+    },
+    {
+        id: 6,
+        title: "T2L",
+        image: T2L,
+    },
+    {
+        id: 7,
+        title: "UnTechEd",
+        image: UnTechEd,
     },
 ];
-
-const BatteryIndicator = (): JSX.Element => {
-    return (
-        <div className="battery-container">
-            <div className="battery-tip" />
-            <div className="battery-body">
-                <div className="battery-fill" />
-            </div>
-        </div>
-    );
-};
 
 export const SponsorPage = (): JSX.Element => {
     // Animation stages: 'initial' (closed), 'opening' (open), 'bursting' (energy), 'moving' (slide down), 'revealed' (cards visible)
     type AnimationStage = 'initial' | 'opening' | 'bursting' | 'moving' | 'revealed';
     const [cardStages, setCardStages] = useState<Record<number, AnimationStage>>({}); // Restored state
+    const totalCards = sponsorData.length;
+    const anglePerCard = 360 / totalCards;
 
     // Carousel Logic
     const [rotation, setRotation] = useState(0);
@@ -105,25 +97,42 @@ export const SponsorPage = (): JSX.Element => {
 
     const handlePointerUp = (e: React.PointerEvent) => {
         dragStartRef.current = null;
+        setIsDragging(false);
         (e.target as Element).releasePointerCapture(e.pointerId);
+    };
+
+    const rotateToIndex = (index: number) => {
+        const targetAngle = -index * anglePerCard;
+
+        setRotation((prevRotation) => {
+            let delta = (targetAngle - prevRotation) % 360;
+            if (delta > 180) delta -= 360;
+            if (delta < -180) delta += 360;
+            return prevRotation + delta;
+        });
+    };
+
+    const getFrontCardIndex = () => {
+        const rawIndex = ((-rotation / anglePerCard) % totalCards + totalCards) % totalCards;
+        return Math.round(rawIndex) % totalCards;
+    };
+
+    const handlePrevious = () => {
+        const currentIndex = getFrontCardIndex();
+        rotateToIndex((currentIndex - 1 + totalCards) % totalCards);
+    };
+
+    const handleNext = () => {
+        const currentIndex = getFrontCardIndex();
+        rotateToIndex((currentIndex + 1) % totalCards);
     };
 
     const handlePokeballClick = (id: number, index: number) => {
         // Prevent click if we were dragging
         if (isDragging) return;
 
-        // Calculate target rotation to bring this card to front (0 degrees)
-        const totalCards = sponsorData.length;
-        const anglePerCard = 360 / totalCards;
-        const targetAngle = -index * anglePerCard;
-
-        // Calculate shortest path to target
-        let delta = (targetAngle - rotation) % 360;
-        if (delta > 180) delta -= 360;
-        if (delta < -180) delta += 360;
-
         // Rotate to bring the clicked card to front
-        setRotation(rotation + delta);
+        rotateToIndex(index);
 
         // Prevent multiple clicks/toggles if already animating sequence
         if (cardStages[id] && cardStages[id] !== 'initial') return;
@@ -160,7 +169,7 @@ export const SponsorPage = (): JSX.Element => {
                 onPointerLeave={handlePointerUp} // Safety fallback
                 style={{
                     '--carousel-rotation': `${rotation}deg`,
-                    '--total-cards': sponsorData.length
+                    '--total-cards': sponsorData.length.toString()
                 } as React.CSSProperties}
             >
                 {sponsorData.map((sponsor, index) => {
@@ -201,77 +210,40 @@ export const SponsorPage = (): JSX.Element => {
                                 )}
                             </div>
 
-                            {/* Actual Card with Bottom Glow */}
+                            {/* Revealed sponsor image only */}
                             <article
-                                className={`sponsor-card sponsor-card-${sponsor.type} ${stage === 'revealed' ? 'visible' : ''}`}
+                                className={`sponsor-card sponsor-image-card ${stage === 'revealed' ? 'visible' : ''}`}
                             >
-                                <div className="card-bottom-glow" /> {/* New Glow Effect */}
-                                {sponsor.type === "gold" ? (
-                                    <div
-                                        className="gold-card"
-                                        style={{ backgroundImage: `url(${sponsor.backgroundImage})` }}
-                                    >
-                                        <img
-                                            className="gold-logo"
-                                            alt={`${sponsor.title} logo`}
-                                            src={sponsor.logoImage}
-                                        />
-                                        <div className="gold-text-container">
-                                            <h3 className="gold-title">{sponsor.title}</h3>
-                                            {sponsor.subtitle && (
-                                                <p className="gold-subtitle">{sponsor.subtitle}</p>
-                                            )}
-                                        </div>
-                                    </div>
-                                ) : sponsor.type === "silver" ? (
-                                    <div className="silver-card">
-                                        <div className="silver-card-background">
-                                            <img
-                                                className="silver-card-image"
-                                                alt=""
-                                                src={sponsor.cardImage}
-                                            />
-                                        </div>
-                                        <div className="silver-top-box" />
-                                        <div className="silver-bottom-box" />
-                                        <h3 className="silver-title">
-                                            Sponsor 2
-                                            <br />
-                                            
-                                        </h3>
-                                        <div className="silver-battery">
-                                            <BatteryIndicator />
-                                        </div>
-                                    </div>
-                                ) : (
-                                    <div className="bronze-card">
-                                        <img
-                                            className="bronze-card-image"
-                                            alt=""
-                                            src={sponsor.cardImage}
-                                        />
-                                        {sponsor.cornerImage && (
-                                            <img
-                                                className="bronze-corner-image"
-                                                alt=""
-                                                src={sponsor.cornerImage}
-                                            />
-                                        )}
-                                        <div className="bronze-top-box" />
-                                        <h3 className="bronze-title">
-                                            
-                                            Sponsor 3
-                                        </h3>
-                                        <div className="bronze-battery">
-                                            <BatteryIndicator />
-                                        </div>
-                                    </div>
-                                )}
+                                <div className="card-bottom-glow" />
+                                <img
+                                    className="sponsor-reveal-image"
+                                    src={sponsor.image}
+                                    alt={sponsor.title}
+                                />
                             </article>
                         </div>
                     );
                 })}
             </section>
+
+            <div className="sponsor-carousel-controls" aria-label="Carousel controls">
+                <button
+                    type="button"
+                    className="carousel-btn"
+                    aria-label="Previous sponsor"
+                    onClick={handlePrevious}
+                >
+                    ‹
+                </button>
+                <button
+                    type="button"
+                    className="carousel-btn"
+                    aria-label="Next sponsor"
+                    onClick={handleNext}
+                >
+                    ›
+                </button>
+            </div>
 
             <header className="sponsor-header">
                 <img

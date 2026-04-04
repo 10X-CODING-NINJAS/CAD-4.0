@@ -56,7 +56,19 @@ export default function Index() {
               textShadow: '0 0 14px rgba(133, 92, 11, 0.4)'
             }}
           >
-            <span className="text-base sm:text-lg md:text-2xl lg:text-4xl">TO BE REVEALED SOON</span>
+            <span
+              className="inline-block text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-extrabold leading-none"
+              style={{
+                letterSpacing: '0.04em',
+                background: 'linear-gradient(180deg, #FFF9DA 0%, #F7D774 38%, #D7A936 67%, #8D5C0B 100%)',
+                WebkitBackgroundClip: 'text',
+                backgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                filter: 'drop-shadow(0 2px 2px rgba(0, 0, 0, 0.35)) drop-shadow(0 0 16px rgba(215, 169, 54, 0.65))'
+              }}
+            >
+              50,000+
+            </span>
           </div>
         </div>
 

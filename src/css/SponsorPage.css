@@ -41,26 +41,78 @@
     top: 52%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 60%;
-    max-width: 1000px;
-    height: auto;
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 4vw;
-    justify-items: center;
-    align-items: flex-end;
+    width: min(95vw, 1300px);
+    height: 62vh;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
     margin-top: 3vh;
+    perspective: 900px;
+    transform-style: preserve-3d;
+    touch-action: pan-y;
+    overflow: visible;
+    user-select: none;
 }
 
 .sponsor-card-wrapper {
-    position: relative;
-    width: 15vw;
-    min-width: 200px;
-    max-width: 280px;
+    position: absolute;
+    top: 57%;
+    left: 50%;
+    width: 13.1vw;
+    min-width: 135px;
+    max-width: 189px;
     aspect-ratio: 0.73;
     display: flex;
     justify-content: center;
     align-items: center;
+    --radius: clamp(198px, 25.2vw, 315px);
+    --angle: calc(var(--card-index) * (360deg / var(--total-cards)) + var(--carousel-rotation));
+    transform: translate(-50%, -50%) rotateY(var(--angle)) translateZ(var(--radius));
+    transform-style: preserve-3d;
+    will-change: transform;
+    cursor: pointer;
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.sponsor-cards-section.is-dragging .sponsor-card-wrapper {
+    transition: none;
+}
+
+.sponsor-card-wrapper>* {
+    transform: rotateY(calc(var(--angle) * -1));
+    backface-visibility: hidden;
+}
+
+.sponsor-carousel-controls {
+    position: absolute;
+    left: 50%;
+    bottom: 8%;
+    transform: translateX(-50%);
+    z-index: 35;
+    display: flex;
+    gap: 14px;
+}
+
+.carousel-btn {
+    width: 52px;
+    height: 52px;
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.45);
+    color: #fff;
+    font-size: 30px;
+    line-height: 1;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.carousel-btn:hover {
+    transform: scale(1.08);
+    background: rgba(0, 0, 0, 0.65);
+}
+
+.carousel-btn:active {
+    transform: scale(0.94);
 }
 
 /* Platform Glow */
@@ -117,10 +169,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 160px;
-    /* Even bigger */
-    height: 160px;
-    /* Even bigger */
+    width: 112px;
+    height: 112px;
     z-index: 20;
     transition: none;
     /* Instant transition */
@@ -140,10 +190,10 @@
     transition: filter 0.3s ease;
 }
 
-/* Hover state: erratic rotation and glow */
+/* Hover state: jitter and glow */
 .card-pokeball-container.initial:hover .card-pokeball {
-    animation: pokeball-rotate-erratic 0.6s steps(12) infinite;
-    filter: drop-shadow(0 0 8px rgba(255, 100, 100, 0.9)) drop-shadow(0 0 15px rgba(255, 50, 50, 0.7));
+    animation: pokeball-jitter 0.3s ease-in-out infinite;
+    filter: drop-shadow(0 0 8px rgba(255, 100, 100, 0.9));
 }
 
 .card-pokeball-container.moving,
@@ -242,6 +292,39 @@
     100% {
         transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-100px) scale(0);
         opacity: 0;
+    }
+}
+
+@keyframes pokeball-jitter {
+    0%, 100% {
+        transform: translate(0, 0);
+    }
+    10% {
+        transform: translate(-2px, -1px);
+    }
+    20% {
+        transform: translate(2px, 1px);
+    }
+    30% {
+        transform: translate(-1px, 2px);
+    }
+    40% {
+        transform: translate(1px, -2px);
+    }
+    50% {
+        transform: translate(-2px, 2px);
+    }
+    60% {
+        transform: translate(2px, -1px);
+    }
+    70% {
+        transform: translate(-1px, -2px);
+    }
+    80% {
+        transform: translate(1px, 2px);
+    }
+    90% {
+        transform: translate(-2px, -1px);
     }
 }
 
@@ -353,6 +436,18 @@
     opacity: 1;
 }
 
+.sponsor-image-card {
+    align-items: center;
+    justify-content: center;
+}
+
+.sponsor-reveal-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.35));
+}
+
 .sponsor-card-gold,
 .sponsor-card-silver,
 .sponsor-card-bronze {
@@ -400,7 +495,7 @@
     text-align: center;
     letter-spacing: 0;
     line-height: 1;
-    white-space: nowrap;
+    white-space: pre-line;
 }
 
 .gold-subtitle {
@@ -475,6 +570,7 @@
     text-align: center;
     letter-spacing: 0;
     line-height: 1.2;
+    white-space: pre-line;
 }
 
 .silver-battery {
@@ -535,6 +631,7 @@
     text-align: center;
     letter-spacing: 0;
     line-height: 1.2;
+    white-space: pre-line;
 }
 
 .bronze-battery {
@@ -714,6 +811,16 @@
         overflow: visible;
     }
 
+    .sponsor-carousel-controls {
+        bottom: 2%;
+    }
+
+    .carousel-btn {
+        width: 44px;
+        height: 44px;
+        font-size: 24px;
+    }
+
     .sponsor-cards-section::-webkit-scrollbar {
         display: none;
     }
@@ -725,13 +832,13 @@
         left: 50%;
 
         /* Geometry - Smaller cards */
-        width: 40vw;
-        min-width: 160px;
-        max-width: 220px;
+        width: 32.4vw;
+        min-width: 131px;
+        max-width: 180px;
         aspect-ratio: 0.73;
 
         /* 3D Transform */
-        --radius: 180px;
+        --radius: 149px;
         /* Reduced radius for smaller cards */
         --angle: calc(var(--card-index) * (360deg / var(--total-cards)) + var(--carousel-rotation));
 
@@ -780,8 +887,8 @@
 
     /* Scale down pokeball inside cards */
     .card-pokeball-container {
-        width: 120px;
-        height: 120px;
+        width: 95px;
+        height: 95px;
     }
 
     /* Font sizes for mobile */
@@ -822,12 +929,23 @@
         gap: 0;
     }
 
+    .sponsor-carousel-controls {
+        bottom: 1%;
+        gap: 10px;
+    }
+
+    .carousel-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 20px;
+    }
+
     .sponsor-card-wrapper {
-        width: 50vw;
-        min-width: 140px;
-        max-width: 180px;
+        width: 41.4vw;
+        min-width: 117px;
+        max-width: 149px;
         /* Adjust radius for smaller screens */
-        --radius: 160px;
+        --radius: 131px;
     }
 
     .sponsor-title-image {
@@ -840,8 +958,8 @@
     }
 
     .card-pokeball-container {
-        width: 100px;
-        height: 100px;
+        width: 81px;
+        height: 81px;
     }
 
     .gold-title,

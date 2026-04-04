@@ -57,7 +57,7 @@ export default function MobilePrize() {
                 lineHeight: 1.1
               }}
             >
-              <span className="text-[17px]">TO BE REVEALED SOON</span>
+              <span className="text-[17px]">50,000+</span>
             </div>
           </div>
         </div>
